@@ -39,7 +39,8 @@ from loadfile import loaddata
 img = loaddata(1)
 
 
-import cv2wrap as cv2
+import cv2
 img2 = cv2.imread('D:/input/in00{:04d}.jpg', 1)
-img_pix = np.array(img,dtype='unit8')
+img_pix = np.array(img, dtype='uint8')
 print(img_pix.shape)
+print(img_pix)
