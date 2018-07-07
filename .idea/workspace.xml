@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f70f0ce-2310-4288-a1f6-2c4ae42c2496" name="Default" comment="" />
+    <list default="true" id="2f70f0ce-2310-4288-a1f6-2c4ae42c2496" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/img3.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/img3.1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loadfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/loadfile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/matrix.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,17 +18,17 @@
       <file leaf-file-name="svd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/svd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-954">
-              <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+            <state relative-caret-position="216">
+              <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="matrix.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="matrix.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/matrix.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+            <state relative-caret-position="198">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -32,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="img3.1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="img3.1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/img3.1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+            <state relative-caret-position="396">
+              <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -47,8 +51,8 @@
       <file leaf-file-name="loadfile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loadfile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
+            <state relative-caret-position="306">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -78,11 +82,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/randomsvd.py" />
-        <option value="$PROJECT_DIR$/matrix.py" />
         <option value="$PROJECT_DIR$/svd.py" />
-        <option value="$PROJECT_DIR$/loadfile.py" />
         <option value="$PROJECT_DIR$/imageSvd.py" />
+        <option value="$PROJECT_DIR$/loadfile.py" />
         <option value="$PROJECT_DIR$/img3.1.py" />
+        <option value="$PROJECT_DIR$/matrix.py" />
       </list>
     </option>
   </component>
@@ -129,7 +133,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.img3.1">
+  <component name="RunManager" selected="Python.matrix">
     <configuration name="imageSvd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DMD" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,9 +214,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.matrix" />
         <item itemvalue="Python.img3.1" />
         <item itemvalue="Python.imageSvd" />
-        <item itemvalue="Python.matrix" />
         <item itemvalue="Python.svd" />
       </list>
     </recent_temporary>
@@ -232,12 +236,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="0" width="1386" height="775" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24963504" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3323217" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3323217" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -312,16 +315,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/randomsvd.py" />
-    <entry file="file://$PROJECT_DIR$/loadfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="27" column="67" selection-start-line="27" selection-start-column="67" selection-end-line="27" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imageSvd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -332,29 +325,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/svd.py">
+    <entry file="file://E:/anacondafile/Lib/site-packages/matplotlib/axes/_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-954">
-          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        <state relative-caret-position="138">
+          <caret line="242" selection-start-line="242" selection-end-line="242" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/matrix.py">
+    <entry file="file://$PROJECT_DIR$/loadfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        <state relative-caret-position="306">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img3.1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        <state relative-caret-position="396">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/svd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>

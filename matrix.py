@@ -5,9 +5,9 @@ from svd import svd_newMatrix
 from svd import rsvd_newMatrix
 
 random.seed(7)
-m = 10
-n =20
-rank = 3
+m = 320*240
+n = 2
+rank = 1
 A = random.random((m,n))
 
 # svd

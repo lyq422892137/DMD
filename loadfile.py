@@ -36,7 +36,7 @@ def loadimgs(num = 100):
     X = A[:,0:A.shape[1]-1]
     Y = A[:,1:A.shape[1]]
 
-    return A, X, Y
+    return A, X, Y, snapshots
 
 
 
