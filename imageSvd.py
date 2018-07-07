@@ -2,13 +2,19 @@
 #################
 # try jpg
 import numpy as np
-from loadfile import loaddata
-img = loaddata(1000)
+
+from loadfile import loadimgs
+A, X, Y = loadimgs(10)
 
 ###################################################
 
-print(type(img))
-print(img.shape)
+print(X.shape)
+print(Y.shape)
+print((X==Y).all())
 
 
-calculate_svd(img, 1)
+
+
+
+
+

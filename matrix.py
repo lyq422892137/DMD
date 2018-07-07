@@ -5,9 +5,9 @@ from svd import svd_newMatrix
 from svd import rsvd_newMatrix
 
 random.seed(7)
-m=3000
-n =320*240
-rank = 12
+m = 10
+n =20
+rank = 3
 A = random.random((m,n))
 
 # svd
@@ -21,7 +21,9 @@ A_new, D = svd_newMatrix(A, U, sigma, V, rank)
 # rsvd
 U2, sigma2, V2 = rsvd(A,rank)
 A_new2, D2 = rsvd_newMatrix(A, U2, sigma2, V2, rank)
-# print(A_new2.shape)
+# print(A)
+# print("-----------------------")
+# print(A_new2)
 
 
 
