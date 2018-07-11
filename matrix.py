@@ -4,10 +4,11 @@ from svd import rsvd
 from svd import svd_newMatrix
 from svd import rsvd_newMatrix
 
+
 random.seed(7)
 m = 320*240
-n = 2
-rank = 1
+n = 10
+rank = 5
 A = random.random((m,n))
 
 # svd
@@ -24,6 +25,5 @@ A_new2, D2 = rsvd_newMatrix(A, U2, sigma2, V2, rank)
 # print(A)
 # print("-----------------------")
 # print(A_new2)
-
 
 

@@ -6,8 +6,8 @@ from pydmd import DMD
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
-
-imgNo = 10
+from svd import rDMD
+imgNo = 4
 A, X, Y, snapshots = loadimgs(imgNo)
 # batchsize =
 rank = 2
@@ -16,6 +16,14 @@ rank = 2
 print(X.shape)
 print(Y.shape)
 print((X==Y).all())
+print(A.shape)
+
+# memory error when imgNo = 2 for both svd and rsvd
+# computeM_1(np.mat(X),Y,rank)
+
+# rDMD:
+rDMD(A,X,Y,rank)
+
 
 #############
 # DMD packages
