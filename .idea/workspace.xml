@@ -4,7 +4,6 @@
     <list default="true" id="2f70f0ce-2310-4288-a1f6-2c4ae42c2496" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img3.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/img3.1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/matrix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svd.py" beforeDir="false" afterPath="$PROJECT_DIR$/svd.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="svd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/svd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1494">
-              <caret line="83" column="18" lean-forward="true" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+            <state relative-caret-position="1056">
+              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
             </state>
           </provider>
         </entry>
@@ -28,8 +27,8 @@
       <file leaf-file-name="img3.1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/img3.1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="38" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="57" />
+            <state relative-caret-position="342">
+              <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -85,8 +84,8 @@
         <option value="$PROJECT_DIR$/randomsvd.py" />
         <option value="$PROJECT_DIR$/imageSvd.py" />
         <option value="$PROJECT_DIR$/loadfile.py" />
-        <option value="$PROJECT_DIR$/svd.py" />
         <option value="$PROJECT_DIR$/matrix.py" />
+        <option value="$PROJECT_DIR$/svd.py" />
         <option value="$PROJECT_DIR$/img3.1.py" />
       </list>
     </option>
@@ -387,15 +386,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/svd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1494">
-          <caret line="83" column="18" lean-forward="true" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+        <state relative-caret-position="1056">
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/img3.1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="38" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="57" />
+        <state relative-caret-position="342">
+          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>

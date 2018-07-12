@@ -7,22 +7,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
 from svd import rDMD
-imgNo = 4
+import time
+
+imgNo = 1000
 A, X, Y, snapshots = loadimgs(imgNo)
 # batchsize =
-rank = 2
+rank = 5
 ###################################################
 
 print(X.shape)
 print(Y.shape)
 print((X==Y).all())
 print(A.shape)
-
-# memory error when imgNo = 2 for both svd and rsvd
-# computeM_1(np.mat(X),Y,rank)
-
-# rDMD:
-# rDMD(A,X,Y,rank)
 
 
 #############
@@ -36,9 +32,17 @@ print(A.shape)
 
 # #######################
 # by rsvd, we cannot compute new matrix directly even the number of images are 2, batches are needed
-# Ux, sigmax, Ax = rsvd(A = X, rank = rank, p = 0, q = 1)
+start1 = time.clock()
+
+Ux, sigmax, Ax = rsvd(A = X, rank = rank, p = 0, q = 1)
+end1 = time.clock()
+
+print("rsvd:" + str(end1-start1))
 
 ########################
 # by svd, we can compute new matrix directly with 1000 images
-# U2, sigma2, V2 = cal_svd(X, rank)
-# svd_newMatrix(X, U2, sigma2,V2, rank)
+start2 = time.clock()
+U2, sigma2, V2 = cal_svd(X, rank)
+end2 = time.clock()
+
+print("svd:" + str(end2-start2))

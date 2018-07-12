@@ -88,34 +88,6 @@ def rsvd(A,rank,p = 5,q = 5):
     U = dot(Q,U_B)
     return U, sigma, V
 
-# memory error when imgNp = 2
-# def computeM_1(X,Y,rank):
-#     # U, sigma, V = rsvd(X,rank=rank)
-#     print("-----------------------------")
-#     # U, sigma, V = cal_svd(A,rank)
-#     U, sigma, VT = linalg.svd(A, full_matrices=False)
-#     V = VT.conj().T
-#     print("V: " + str(V.shape))
-#     print("U: " + str(U.shape))
-#     print("sigma: " + str(len(sigma)))
-#     S = mat(eye(rank) * sigma)
-#     print(S.shape)
-#     S = S.I
-#     print(S.shape)
-#     M = dot(Y,V.T)
-#     print(M.shape)
-#     # .dot(S).dot(U.T)
-#     print(M.shape)
-    # U2, sigma2, V2 = cal_svd(1/X,0)
-    # print(U1.shape)
-    # print(U2.shape)
-    # print(sigma1)
-    # print(sigma2)
-    # print(V1.shape)
-    # print(V2.shape)
-    # print(X.shape)
-    # print((1/X).shape)
-
 def rDMD(D,X,Y,k):
     U, sigma, V = rsvd(X,rank=k)
     print(len(sigma))
