@@ -7,7 +7,7 @@ from svd import rsvd_newMatrix
 
 random.seed(7)
 m = 320*240
-n = 10
+n = 1000
 rank = 5
 A = random.random((m,n))
 

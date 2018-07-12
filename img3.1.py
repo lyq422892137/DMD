@@ -22,7 +22,7 @@ print(A.shape)
 # computeM_1(np.mat(X),Y,rank)
 
 # rDMD:
-rDMD(A,X,Y,rank)
+# rDMD(A,X,Y,rank)
 
 
 #############

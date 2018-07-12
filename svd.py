@@ -81,7 +81,7 @@ def rsvd(A,rank,p = 5,q = 5):
     # stage 2
     # project A onto the low-dimensional subspace
     B = dot(Q.T,A)
-    # print(B.shape)
+    print(B.shape)
     U_B, sigma, VT = linalg.svd(B, full_matrices=False)
     # print(U_B.shape)
     V = VT.conj().T
