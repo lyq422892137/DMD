@@ -8,17 +8,26 @@ import numpy as np
 import scipy.integrate
 import time
 from DMD import rdmd
+from DMD import compute_newD
+from DMD import separateOmega
+from DMD import compute_background
+from DMD import compute_foreground
+from loadfile import showimages
 
-imgNo = 1000
-A, X, Y, snapshots = loadimgs(imgNo)
+
+
+# 3000 is okay
+imgNo = 10
+A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
 rank = 5
+p = 0
 ###################################################
 
-print(X.shape)
-print(Y.shape)
-print((X==Y).all())
-print(A.shape)
+# print(X.shape)
+# print(Y.shape)
+# print((X==Y).all())
+# print(A.shape)
 
 
 #############
@@ -52,6 +61,15 @@ print(A.shape)
 # svd:189.06396405083467
 
 start3 = time.clock()
-rdmd(X,Y,rank)
+phi, B, omega= rdmd(X,Y,A,rank,p)
+D_new = compute_newD(phi, B, A.shape[1], rank+p, omega=omega)
+l,s, l_count, s_count = separateOmega(omega)
+L = compute_background(D_new,s_count)
+print(L.shape)
+S = compute_foreground(D_new,l_count)
+print(S.shape)
+# showimages(L.real,x_pix,y_pix,L.shape[1])
+# showimages(S.real,x_pix,y_pix,S.shape[1])
+showimages(D_new.real,x_pix,y_pix,imgNo)
 end3 = time.clock()
 print("rdmd:" + str(end3-start3))
