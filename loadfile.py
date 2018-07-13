@@ -10,15 +10,16 @@ def loadimgs(num = 100):
         ]
     # declare A as the (m,n) matrix which contains the whole images
     A = np.zeros([snapshots[0].shape[0] * snapshots[0].shape[1], len(snapshots)])
-    for i, snapshot in enumerate(snapshots, start=1):
-        A[:,i-1] = snapshot.reshape((snapshot.shape[0] * snapshot.shape[1],1))[0]
+    n = len(snapshots)
+    for i in range(0,n):
+        A[:,i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],1))[0]
         # print(snapshot.shape)
+        # print(snapshot)
         # plt.imshow(snapshot)
         # plt.show()
 
-    X = A[:,0:A.shape[1]-1]
-    Y = A[:,1:A.shape[1]]
-
+    X = A[:,range(len(snapshots)-1)]
+    Y = A[:,range(1,len(snapshots))]
     x_pix = snapshots[0].shape[0]
     y_pix = snapshots[0].shape[1]
 
@@ -33,13 +34,15 @@ def showimages(A, x_pix, y_pix, num = 100):
     # print(len(snapshots))
     # print(snapshots[0].shape)
 
-    for i, snapshot in enumerate(snapshots, start=1):
+    for snapshot in enumerate(snapshots, start=1):
+        print(snapshot)
         img = Image.fromarray(snapshot)
         # 转换成灰度图
         # img = img.covert('L')
         # 可以调用Image库下的函数了，比如show()
         img.show()
-
+    # print(snapshots[0])
+    # print(snapshots[590])
 
 
 

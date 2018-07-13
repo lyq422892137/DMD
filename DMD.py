@@ -48,48 +48,68 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
 
     return phi, B, omega
 
-def separateOmega(omega, threshold = 0.1):
-    l = []
-    l_count = []
-    s = []
-    s_count = []
-    for i in range(len(omega)):
-        if power(omega[i],2) < threshold:
-            l.append(omega[i])
-            l_count.append(i)
-        else:
-            s.append(omega[i])
-            s_count.append(i)
-
-    print(len(s))
-    print(l_count)
-    print(type(l))
-
-    return l, s, l_count, s_count
-
-def compute_V(n,k,omega,count):
+def compute_V(n,k,omega):
     V = ones((n, k), dtype=complex)
-    if count == -1:
-        omega
-    else:
-        omega = omega[count]
-
-    for i in range(k):
+    for i in range(len(omega)):
         V[:, i] = omega[i]
     return V
 
+# def computeImags(omega, phi, B, n, threshold = 1):
+#     k = len(omega)
+#     m = B.shape[0]
+#     V = compute_V(n, k, omega)
+#     l = []
+#     s = []
+#     l_count = []
+#     s_count = []
+#
+#     for i in range(len(omega)):
+#         if sqrt(power(omega[i],2)) < threshold:
+#             l.append(omega[i])
+#             l_count.append(i)
+#         else:
+#             s.append(omega[i])
+#             s_count.append(i)
+#
+
+    # l = []
+    # l_count = []
+    # s = []
+    # s_count = []
+    # V = compute_V(n, k, omega, -1)
+    #
+    # for i in range(len(omega)):
+    #     if power(omega[i],2) < threshold:
+    #         l.append(B[i]*phi[i]*exp(V[]))
+    #         l_count.append(i)
+    #     else:
+    #         s.append(omega[i])
+    #         s_count.append(i)
+    #
+    print(len(omega))
+    print(len(s))
+    print(s_count)
+    #
+    # return l, s, l_count, s_count
+
 def compute_newD(phi,B,n,k,omega):
-    V = compute_V(n,k,omega,-1)
+    # V = compute_V(n,k,omega)
+    V = ones((n, k), dtype=complex)
+    for i in range(len(omega)):
+        V[:, i] = omega[i]
+
     D_new = dot(phi, B).dot(V.T)
     return D_new
 
-def compute_background(D_new,s_count):
-    L = delete(D_new, s_count, 1)
-    return L
-
-def compute_foreground(D_new,l_count):
-    S = delete(D_new, l_count, 1)
-    return S
+#
+# def compute_background(D_new,s_count, n, k ,omega,phi, B):
+#     V = compute_V(n, k, omega, s_count)
+#     L = dot(phi, B).dot(V.T)
+#     return L
+#
+# def compute_foreground(D_new,l_count):
+#     S = delete(D_new, l_count, 1)
+#     return S
 
 
 
