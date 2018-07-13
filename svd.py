@@ -45,7 +45,7 @@ def svd_newMatrix(A,U,sigma,V,rank):
     # print(A_new.shape)
     # frobenius norm
     D = linalg.norm(A-A_new)
-    print("svd: "+ str(D))
+    # print("svd: "+ str(D))
     return A_new, D
 
 def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
@@ -56,7 +56,7 @@ def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
     # print(A_new.shape)
     # the error bound of rsvd:
     D = linalg.norm(A-A_new)
-    print("rsvd: " + str(D))
+    # print("rsvd: " + str(D))
     return A_new, D
 
 
@@ -81,24 +81,24 @@ def rsvd(A,rank,p = 5,q = 5):
     # stage 2
     # project A onto the low-dimensional subspace
     B = dot(Q.T,A)
-    print(B.shape)
+    # print(B.shape)
     U_B, sigma, VT = linalg.svd(B, full_matrices=False)
     # print(U_B.shape)
     V = VT.conj().T
     U = dot(Q,U_B)
     return U, sigma, V
 
-def rDMD(D,X,Y,k):
-    U, sigma, V = rsvd(X,rank=k)
-    print(len(sigma))
-    S = diag(sigma)
-    print(S.shape)
-    M = dot(U.T,Y).dot(V).dot(S)
-    W, l = linalg.eig(M)
-    F = mat(dot(Y,V).dot(S).dot(W))
-    print(F.shape)
-    b = linalg.lstsq(F,mat(X[:,0]))
-    V = vander(l)
+# def rDMD(D,X,Y,k):
+#     U, sigma, V = rsvd(X,rank=k)
+#     print(len(sigma))
+#     S = diag(sigma)
+#     print(S.shape)
+#     M = dot(U.T,Y).dot(V).dot(S)
+#     W, l = linalg.eig(M)
+#     F = mat(dot(Y,V).dot(S).dot(W))
+#     print(F.shape)
+#     b = linalg.lstsq(F,mat(X[:,0]))
+#     V = vander(l)
 
 
 

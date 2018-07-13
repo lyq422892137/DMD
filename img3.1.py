@@ -6,8 +6,8 @@ from pydmd import DMD
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.integrate
-from svd import rDMD
 import time
+from DMD import rdmd
 
 imgNo = 1000
 A, X, Y, snapshots = loadimgs(imgNo)
@@ -32,17 +32,26 @@ print(A.shape)
 
 # #######################
 # by rsvd, we cannot compute new matrix directly even the number of images are 2, batches are needed
-start1 = time.clock()
+# start1 = time.clock()
+#
+# Ux, sigmax, Ax = rsvd(A = X, rank = rank, p = 0, q = 1)
+# end1 = time.clock()
+#
+# print("rsvd:" + str(end1-start1))
+#
+# ########################
+# # by svd, we can compute new matrix directly with 1000 images
+# start2 = time.clock()
+# U2, sigma2, V2 = cal_svd(X, rank)
+# end2 = time.clock()
+#
+# print("svd:" + str(end2-start2))
 
-Ux, sigmax, Ax = rsvd(A = X, rank = rank, p = 0, q = 1)
-end1 = time.clock()
+# for 1000 images:
+# rsvd:1.0923066157967092
+# svd:189.06396405083467
 
-print("rsvd:" + str(end1-start1))
-
-########################
-# by svd, we can compute new matrix directly with 1000 images
-start2 = time.clock()
-U2, sigma2, V2 = cal_svd(X, rank)
-end2 = time.clock()
-
-print("svd:" + str(end2-start2))
+start3 = time.clock()
+rdmd(X,Y,rank)
+end3 = time.clock()
+print("rdmd:" + str(end3-start3))

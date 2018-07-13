@@ -18,17 +18,29 @@
       <file leaf-file-name="svd.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/svd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="174">
+              <caret line="53" column="34" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="img3.1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DMD.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DMD.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+              <folding>
+                <element signature="e#79#99#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="img3.1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/img3.1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+            <state relative-caret-position="246">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -39,7 +51,7 @@
       <file leaf-file-name="loadfile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loadfile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
+            <state relative-caret-position="630">
               <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -51,7 +63,7 @@
       <file leaf-file-name="matrix.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matrix.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
+            <state relative-caret-position="90">
               <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -73,6 +85,7 @@
     <findStrings>
       <find>PRINT</find>
       <find>rank</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,8 +98,9 @@
         <option value="$PROJECT_DIR$/imageSvd.py" />
         <option value="$PROJECT_DIR$/loadfile.py" />
         <option value="$PROJECT_DIR$/matrix.py" />
-        <option value="$PROJECT_DIR$/svd.py" />
         <option value="$PROJECT_DIR$/img3.1.py" />
+        <option value="$PROJECT_DIR$/svd.py" />
+        <option value="$PROJECT_DIR$/DMD.py" />
       </list>
     </option>
   </component>
@@ -103,6 +117,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -114,7 +129,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -241,13 +255,13 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25073314" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3323217" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3323217" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -261,6 +275,43 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/svd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1818">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loadfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/matrix.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img3.1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/svd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
@@ -366,7 +417,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/loadfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
+        <state relative-caret-position="630">
           <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -376,7 +427,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/matrix.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
+        <state relative-caret-position="90">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
@@ -384,19 +435,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/svd.py">
+    <entry file="file://$PROJECT_DIR$/img3.1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="246">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img3.1.py">
+    <entry file="file://$PROJECT_DIR$/svd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="47" column="7" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+        <state relative-caret-position="174">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DMD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#79#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
