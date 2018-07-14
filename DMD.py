@@ -25,7 +25,7 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
     # for a standard video, delta t = 1
     # thus, omega = ln(L)
     omega = log(L)
-    # print("W:"+ str(W)) W没问题
+    # print("W:"+ str(W)) W no problem
     # print("Vx:" + str(Vx)) Vx no problem
     # print("Sx.I:" + str(Sx.I)) no problem but the values are very big
     # compute phi and B, the amplitudes
