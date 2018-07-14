@@ -2,10 +2,10 @@ from loadfile import loadimgs
 from svd import rsvd
 from svd import cal_svd
 from svd import svd_newMatrix
-from pydmd import DMD
-import matplotlib.pyplot as plt
-import numpy as np
-import scipy.integrate
+# from pydmd import DMD
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import scipy.integrate
 import time
 from DMD import rdmd
 # from DMD import computeImags

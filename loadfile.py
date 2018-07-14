@@ -1,11 +1,12 @@
 import numpy as np
 import cv2
-from PIL import Image
+# from PIL import Image
 import matplotlib.pyplot as plt  # plt 用于显示图片
 
 def loadimgs(num = 100):
     snapshots = [
-            np.array(cv2.imread('D:/input/in00{:04d}.jpg'.format(i),0),dtype='uint32')
+            # np.array(cv2.imread('D:/input/in00{:04d}.jpg'.format(i),0),dtype='uint32')
+            np.array(cv2.imread('/cs/home/yl90/Downloads/corridor/input/in00{:04d}.jpg'.format(i), 0), dtype='uint32')
             for i in range(1,num +1)
         ]
     # declare A as the (m,n) matrix which contains the whole images
@@ -36,11 +37,11 @@ def showimages(A, x_pix, y_pix, num = 100):
 
     for snapshot in enumerate(snapshots, start=1):
         print(snapshot)
-        img = Image.fromarray(snapshot)
-        # 转换成灰度图
-        # img = img.covert('L')
-        # 可以调用Image库下的函数了，比如show()
-        img.show()
+        # img = Image.fromarray(snapshot)
+        # # 转换成灰度图
+        # # img = img.covert('L')
+        # # 可以调用Image库下的函数了，比如show()
+        # img.show()
     # print(snapshots[0])
     # print(snapshots[590])
 
