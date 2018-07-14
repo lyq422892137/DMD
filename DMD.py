@@ -25,24 +25,13 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
     # for a standard video, delta t = 1
     # thus, omega = ln(L)
     omega = log(L)
-
+    # print("W:"+ str(W)) W没问题
+    # print("Vx:" + str(Vx)) Vx no problem
+    # print("Sx.I:" + str(Sx.I)) no problem but the values are very big
     # compute phi and B, the amplitudes
-    # # this part refers Github's pyDMD packages by mathlab:
-    # # https://github.com/lyq422892137/PyDMD/blob/master/pydmd/dmdbase.py
-    # # LV = concatenate([
-    # #     omega.dot(diag(L**i))
-    # #     for i in range(D.shape[1])
-    # # ],
-    # # axis=0)
-    # #
-    # b = reshape(D,(-1,),order='F')
-    # # LV = reshape(LV,(-1,1),order='F')
-    # # print("b: "+ str(b.shape))
-    # # print("lv: "+ str(LV.shape))
-    # print(D.shape)
-    # print(mat(omega).shape)
-    # B = linalg.lstsq(mat(omega), D)[0]
     phi = dot(Y,Vx).dot(Sx.I).dot(W)
+    print("phi:" + str((phi[0,0]==phi[0,0].all())))
+    print(phi)
     b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
     B = mat(eye(rank_new) * array(b))
 
@@ -94,11 +83,22 @@ def compute_V(n,k,omega):
 
 def compute_newD(phi,B,n,k,omega):
     # V = compute_V(n,k,omega)
-    V = ones((n, k), dtype=complex)
+    V = ones((k, n), dtype=complex)
     for i in range(len(omega)):
         V[:, i] = omega[i]
-
-    D_new = dot(phi, B).dot(V.T)
+    for t in range(n):
+        V[:,i] = V[:,i] * t
+    V = exp(V)
+    print("V:" +str((V[:, 0] == V[:, 3]).all()))
+    print(V.shape)
+    print(omega[4])
+    print(V[0,4])
+    print("phi:" +str(phi.shape))
+    # D_new = dot(phi, B).dot(V)
+    D_new = dot(phi, B).dot(V)
+    print("-----------------------")
+    print(D_new)
+    print("-----------------------")
     return D_new
 
 #

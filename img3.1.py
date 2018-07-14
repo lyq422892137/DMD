@@ -18,7 +18,7 @@ from loadfile import showimages
 
 
 # 3000 is okay
-imgNo = 200
+imgNo = 20
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
 rank = 5
@@ -27,7 +27,7 @@ p = 0
 # print(Y)
 # print(X.shape)
 # print(Y.shape)
-print((X[:,0]==X[:,0]).all())
+print((X[:,0]==Y[:,0]).all())
 print((X[:,1]==Y[:,0]).all())
 print((X==Y).all())
 # print(X)
@@ -80,6 +80,6 @@ print((D_new[:,0]==D_new[:,2]).all())
 # print(S.shape)
 # showimages(L.real,x_pix,y_pix,L.shape[1])
 # showimages(S.real,x_pix,y_pix,S.shape[1])
-# showimages(D_new.real,x_pix,y_pix,imgNo)
+showimages(D_new.real,x_pix,y_pix,imgNo)
 end3 = time.clock()
 print("rdmd:" + str(end3-start3))

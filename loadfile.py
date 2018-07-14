@@ -33,16 +33,16 @@ def showimages(A, x_pix, y_pix, num = 100):
     ]
     # print(len(snapshots))
     # print(snapshots[0].shape)
-
-    for snapshot in enumerate(snapshots, start=1):
-        print(snapshot)
-        img = Image.fromarray(snapshot)
+    print(snapshots[0])
+    print(snapshots[3])
+    for j in range(A.shape[1]):
+        # print(snapshot)
+        img = Image.fromarray(snapshots[j])
         # 转换成灰度图
         # img = img.covert('L')
         # 可以调用Image库下的函数了，比如show()
         img.show()
-    # print(snapshots[0])
-    # print(snapshots[590])
+
 
 
 
