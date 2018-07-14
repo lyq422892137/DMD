@@ -25,23 +25,24 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
     # thus, omega = ln(L)
     omega = log(L)
     # print("W:"+ str(W)) W no problem
-    # print("Vx:" + str(Vx)) Vx no problem
+    # print("Vx:" + str(Vx)) Vx no problem, all are different
+    print("Y:"+str(Y))
     # print("Sx:" + str(Sx)) no problem but the values are very big
     # compute phi and B, the amplitudes
     phi = dot(Y,Vx).dot(Sx).dot(W)
     print("phi:" + str((phi[0,0]==phi[0,0].all())))
     print(phi)
     print(phi.shape)
-    # b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
-    b = linalg.lstsq(phi,X[:,0])[0]
-    print("b:"+str(b))
+    b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
+    # b = linalg.lstsq(phi,X[:,0])[0]
+    print("b:"+str(b)) # different bs
     B = mat(eye(rank_new) * array(b))
 
     V = ones((rank_new, D.shape[1]), dtype=complex)
     V = vander(L)
-    print("V:" + str((V[:, 0] == V[:, 3]).all()))
+    print("V:" + str((V[:, 0] == V[:, 0]).all()))
     print(V.shape)
-    print("omega[4]:" + str(omega[4]))
+    print("omega[0]:" + str(omega[0]))
     print("V:" + str(V))
 
 
@@ -92,18 +93,15 @@ def compute_V(n,k,omega):
     # return l, s, l_count, s_count
 
 def compute_newD(phi,B,n,k,omega,V):
-    # V = compute_V(n,k,omega)
-    # V = ones((k, n), dtype=complex)
-    # for i in range(len(omega)):
-    #     V[:, i] = omega[i]
-    # for t in range(n):
-    #     V[:,t] = V[:,t] * t
-    # V = exp(V)
-
-
+    V2 = ones((k, n), dtype=complex)
+    for i in range(len(omega)):
+        V2[:, i] = omega[i]
+    for t in range(n):
+        V2[:,t] = V2[:,t] * t
+    V2 = exp(V2)
     print("phi:" +str(phi.shape))
     # D_new = dot(phi, B).dot(V)
-    D_new = dot(phi, B)
+    D_new = dot(phi, B).dot(V2)
     print("-----------------------")
     print("D_new:" +str(D_new))
     print("-----------------------")

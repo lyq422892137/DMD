@@ -18,15 +18,20 @@ from loadfile import showimages
 
 
 # 3000 is okay
-imgNo = 20
+imgNo = 5
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
-rank = 5
+rank = 2
 p = 0
+mm = 0
 ###################################################
-# print(Y)
-# print(X.shape)
-# print(Y.shape)
+for i in range(A.shape[0]):
+    if Y[i,0] == 63:
+        mm = mm +1
+print(mm)
+print("Y[400,0]:"+str(Y[400,0]))
+print(X.shape)
+print(Y.shape)
 print((X[:,0]==Y[:,0]).all())
 print((X[:,1]==Y[:,0]).all())
 print((X==Y).all())
@@ -71,7 +76,7 @@ phi, B, omega, V = rdmd(X,Y,A,rank,p)
 # print(phi)
 # computeImags(omega,B,phi, A.shape[1])
 D_new = compute_newD(phi, B, A.shape[1], rank+p, omega=omega, V=V)
-print((D_new[:,0]==D_new[:,2]).all())
+print((D_new[:,0]==D_new[:,0]).all())
 # print(D_new[10,10])
 # l,s, l_count, s_count = separateOmega(omega)
 # L = compute_background(D_new,s_count, A.shape[1], k ,omega,phi, B)

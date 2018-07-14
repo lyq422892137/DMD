@@ -11,8 +11,11 @@ def loadimgs(num = 100):
     # declare A as the (m,n) matrix which contains the whole images
     A = np.zeros([snapshots[0].shape[0] * snapshots[0].shape[1], len(snapshots)])
     n = len(snapshots)
-    for i in range(0,n):
-        A[:,i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],1))[0]
+    m = snapshots[0].shape[0]
+    print("342342342")
+    print(snapshots[0].reshape((snapshots[0].shape[0] * snapshots[0].shape[1],1)))
+    for i in range(n):
+        A[:,i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
         # print(snapshot.shape)
         # print(snapshot)
         # plt.imshow(snapshot)
