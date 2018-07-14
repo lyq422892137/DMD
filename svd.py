@@ -74,9 +74,6 @@ def rsvd(A,rank,p = 5,q = 5):
     Y = dot(A,O)
     # print(Y.shape)
     Q, R = linalg.qr(Y)
-    # A_new = dot(Q,Q.T).dot(A)
-    # D = linalg.norm(A - A_new)
-    # print(D)
 
     # stage 2
     # project A onto the low-dimensional subspace
@@ -87,19 +84,6 @@ def rsvd(A,rank,p = 5,q = 5):
     V = VT.conj().T
     U = dot(Q,U_B)
     return U, sigma, V
-
-# def rDMD(D,X,Y,k):
-#     U, sigma, V = rsvd(X,rank=k)
-#     print(len(sigma))
-#     S = diag(sigma)
-#     print(S.shape)
-#     M = dot(U.T,Y).dot(V).dot(S)
-#     W, l = linalg.eig(M)
-#     F = mat(dot(Y,V).dot(S).dot(W))
-#     print(F.shape)
-#     b = linalg.lstsq(F,mat(X[:,0]))
-#     V = vander(l)
-
 
 
 

@@ -24,10 +24,9 @@ def loadimgs(num = 100):
     x_pix = snapshots[0].shape[0]
     y_pix = snapshots[0].shape[1]
 
-
-    cv2.imwrite("d://1.png",snapshots[0])
-    print(snapshots[0].shape)
-    print(snapshots[0])
+    # cv2.imwrite("d://1.png",snapshots[0])
+    # print(snapshots[0].shape)
+    # print(snapshots[0])
     print("-----------")
 
 
@@ -39,13 +38,17 @@ def showimages(A, x_pix, y_pix, num = 100):
         A[:, i].reshape((x_pix, y_pix))
         for i in range(num)
     ]
-    cv2.imwrite("d://6.png", snapshots2[5])
+
+    for i in range(num):
+        cv2.imwrite("D:/output/in00{:04d}.png".format(i+1), snapshots2[i])
+    cv2.imwrite("d://1.png", snapshots2[0])
     print(snapshots2[0].shape)
     print(snapshots2[0])
     # print(len(snapshots))
     # print(snapshots[0].shape)
     print("snap[0]:"+str(snapshots2[0]))
-    print("snap[3]:"+str(snapshots2[3]))
+    print("snap[1]:"+str(snapshots2[1]))
+    print("snap[2]:" + str(snapshots2[2]))
     # img = Image.fromarray(snapshots[0])
     # img.show()
     #
