@@ -1,13 +1,11 @@
 import numpy as np
 import cv2
-# from PIL import Image
 import matplotlib.pyplot as plt  # plt 用于显示图片
 
 def loadimgs(num = 100):
     snapshots = [
-            # np.array(cv2.imread('D:/input/in00{:04d}.jpg'.format(i),0),dtype='uint32')
-            np.array(cv2.imread('/cs/home/yl90/Downloads/corridor/input/in00{:04d}.jpg'.format(i), 0), dtype='uint32')
-
+            np.array(cv2.imread('D:/input/in00{:04d}.jpg'.format(i),0),dtype='uint8')
+            # np.array(cv2.imread('/cs/home/yl90/Downloads/corridor/input/in00{:04d}.jpg'.format(i), 0), dtype='uint32')
             for i in range(1,num +1)
         ]
     # declare A as the (m,n) matrix which contains the whole images
@@ -22,8 +20,29 @@ def loadimgs(num = 100):
 
     X = A[:,range(len(snapshots)-1)]
     Y = A[:,range(1,len(snapshots))]
+
     x_pix = snapshots[0].shape[0]
     y_pix = snapshots[0].shape[1]
+
+    snapshots2 = [
+        A[:, i].reshape((x_pix, y_pix))
+        for i in range(num)
+    ]
+
+    print(type(snapshots))
+    print(type(snapshots2))
+    # img = Image.fromarray(snapshots2[0])
+    cv2.imwrite("d://1.png",snapshots[0])
+    print(snapshots[0].shape)
+    print(snapshots[0])
+    print("-----------")
+    cv2.imwrite("d://2.png", snapshots2[0])
+    print(snapshots2[0].shape)
+    print(snapshots2[0])
+
+    # img2 = Image.fromarray(snapshots2[3])
+    # img2.show()
+
 
     return A, X, Y, snapshots, x_pix, y_pix
 
@@ -35,14 +54,16 @@ def showimages(A, x_pix, y_pix, num = 100):
     ]
     # print(len(snapshots))
     # print(snapshots[0].shape)
-    print(snapshots[0])
-    print(snapshots[3])
-    for j in range(A.shape[1]):
-        print(snapshots[j])
+    print("snap[0]:"+str(snapshots[0]))
+    print("snap[3]:"+str(snapshots[3]))
+    # img = Image.fromarray(snapshots[0])
+    # img.show()
+    #
+    # img2 = Image.fromarray(snapshots[3])
+    # img2.show()
+    # for j in range(A.shape[1]):
+    #     print(snapshots[j])
         # img = Image.fromarray(snapshots[j])
-        # # 转换成灰度图
-        # # img = img.covert('L')
-        # # 可以调用Image库下的函数了，比如show()
         # img.show()
 
 

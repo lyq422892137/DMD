@@ -10,32 +10,42 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
     random.seed(7)
     rank_new = rank+p
     Ux, sigmax, Vx = rsvd(X,rank,p,q)
-    Sx = mat(eye(rank_new) * sigmax)
+    Sx = mat(eye(rank_new) * sigmax).I
 
     # compute M_hat
-    M_hat = dot(Ux.T,Y).dot(Vx).dot(Sx.I)
+    M_hat = dot(Ux.T,Y).dot(Vx).dot(Sx)
 
     # compute upper lambda L
     # a, b = np.linalg.eig(x)
     # a is eigenvalues, b is eigenvector
     # here， L = a, W = b
     L, W = linalg.eig(M_hat)
-
     # compute omega = ln(lambda)/delta t
     # for a standard video, delta t = 1
     # thus, omega = ln(L)
     omega = log(L)
     # print("W:"+ str(W)) W no problem
     # print("Vx:" + str(Vx)) Vx no problem
-    # print("Sx.I:" + str(Sx.I)) no problem but the values are very big
+    # print("Sx:" + str(Sx)) no problem but the values are very big
     # compute phi and B, the amplitudes
-    phi = dot(Y,Vx).dot(Sx.I).dot(W)
+    phi = dot(Y,Vx).dot(Sx).dot(W)
     print("phi:" + str((phi[0,0]==phi[0,0].all())))
     print(phi)
-    b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
+    print(phi.shape)
+    # b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
+    b = linalg.lstsq(phi,X[:,0])[0]
+    print("b:"+str(b))
     B = mat(eye(rank_new) * array(b))
 
-    return phi, B, omega
+    V = ones((rank_new, D.shape[1]), dtype=complex)
+    V = vander(L)
+    print("V:" + str((V[:, 0] == V[:, 3]).all()))
+    print(V.shape)
+    print("omega[4]:" + str(omega[4]))
+    print("V:" + str(V))
+
+
+    return phi, B, omega, V
 
 def compute_V(n,k,omega):
     V = ones((n, k), dtype=complex)
@@ -81,23 +91,21 @@ def compute_V(n,k,omega):
     #
     # return l, s, l_count, s_count
 
-def compute_newD(phi,B,n,k,omega):
+def compute_newD(phi,B,n,k,omega,V):
     # V = compute_V(n,k,omega)
-    V = ones((k, n), dtype=complex)
-    for i in range(len(omega)):
-        V[:, i] = omega[i]
-    for t in range(n):
-        V[:,i] = V[:,i] * t
-    V = exp(V)
-    print("V:" +str((V[:, 0] == V[:, 3]).all()))
-    print(V.shape)
-    print(omega[4])
-    print(V[0,4])
+    # V = ones((k, n), dtype=complex)
+    # for i in range(len(omega)):
+    #     V[:, i] = omega[i]
+    # for t in range(n):
+    #     V[:,t] = V[:,t] * t
+    # V = exp(V)
+
+
     print("phi:" +str(phi.shape))
     # D_new = dot(phi, B).dot(V)
-    D_new = dot(phi, B).dot(V)
+    D_new = dot(phi, B)
     print("-----------------------")
-    print(D_new)
+    print("D_new:" +str(D_new))
     print("-----------------------")
     return D_new
 
