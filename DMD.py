@@ -33,15 +33,15 @@ def rdmd(X, Y, D, rank=5,p=5,q=5):
     print("phi:" + str((phi[0,0]==phi[0,0].all())))
     print(phi)
     print(phi.shape)
-    b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
-    # b = linalg.lstsq(phi,X[:,0])[0]
+    # b = dot(phi.T,phi).I.dot(phi.T).dot(X[:,0])
+    b = linalg.lstsq(phi,X[:,0])[0]
     print("b:"+str(b)) # different bs
     B = mat(eye(rank_new) * array(b))
 
-    V = ones((rank_new, D.shape[1]), dtype=complex)
     V = vander(L)
     print("V:" + str((V[:, 0] == V[:, 0]).all()))
     print(V.shape)
+    print(V)
     print("omega[0]:" + str(omega[0]))
     print("V:" + str(V))
 
@@ -99,6 +99,7 @@ def compute_newD(phi,B,n,k,omega,V):
     for t in range(n):
         V2[:,t] = V2[:,t] * t
     V2 = exp(V2)
+    print(V2.shape)
     print("phi:" +str(phi.shape))
     # D_new = dot(phi, B).dot(V)
     D_new = dot(phi, B).dot(V2)
@@ -106,17 +107,6 @@ def compute_newD(phi,B,n,k,omega,V):
     print("D_new:" +str(D_new))
     print("-----------------------")
     return D_new
-
-#
-# def compute_background(D_new,s_count, n, k ,omega,phi, B):
-#     V = compute_V(n, k, omega, s_count)
-#     L = dot(phi, B).dot(V.T)
-#     return L
-#
-# def compute_foreground(D_new,l_count):
-#     S = delete(D_new, l_count, 1)
-#     return S
-
 
 
 
