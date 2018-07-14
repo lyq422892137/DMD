@@ -17,7 +17,6 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     print("M")
     print(M_hat.shape)
 
-
     # a, b = np.linalg.eig(x)
     # a is eigenvalues, b is eigenvector
     # here， L = a, W = b
@@ -27,7 +26,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     # for a standard video, delta t = 1
     # thus, omega = ln(L) = modes
     # omega = log(L)
-    # print("D:"+str(D))
+    print("D:"+str(D))
 
     # compute phi (dynamic modes)  and B, the amplitudes
     phi = dot(Y,Vx).dot(Sx).dot(W)
@@ -37,17 +36,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     #     b.append(linalg.lstsq(phi,D[:,i])[0])
     # b = array(b)
 
-    b = linalg.lstsq(phi, X[:, 5])[0]
-
-    # b = ones((rank_new,))
-    # b0 = concatenate([
-    #     phi.dot(diag(L**i))
-    #     for i in range(D.shape[1])
-    # ])
-    # print(b0.shape)
-    # a = reshape(D,(-1,),order='F')
-    # b = linalg.lstsq(b0,a)[0]
-    # print(b.shape)
+    b = linalg.lstsq(phi, X[:, 0])[0]
     B = mat(eye(rank_new) * array(b))
     print("B")
     print(B.shape)
@@ -56,7 +45,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     for i in range(len(L)):
         V[:, i] = L[i]
     for t in range(D.shape[1]):
-        V[:, t] = V[:, t] * t
+        V[:, t] = V[:, t] ** t
     V2 = exp(V)
     print(V2.shape)
     print("phi:" + str(phi.shape))
@@ -70,9 +59,6 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
 
 def compute_newD(phi,B,V):
     D_new = dot(phi, B).dot(V)
-    print("-----------------------")
-    print("D_new:" +str(D_new))
-    print("-----------------------")
     return D_new
 
 

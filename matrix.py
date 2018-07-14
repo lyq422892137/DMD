@@ -13,6 +13,7 @@ A = random.random((m,n))
 
 # svd
 U, sigma, V = cal_svd(A,rank)
+print(U.shape)
 A_new, D = svd_newMatrix(A, U, sigma, V, rank)
 # print(A)
 # print("-----------------------")

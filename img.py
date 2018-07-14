@@ -1,8 +1,8 @@
 from loadfile import loadimgs
 
 # from svd import svd_newMatrix
-# from pydmd import DMD
-# import matplotlib.pyplot as plt
+from pydmd import FbDMD
+import matplotlib.pyplot as plt
 # import numpy as np
 # import scipy.integrate
 import time
@@ -11,11 +11,11 @@ from DMD import compute_newD
 from loadfile import showimages
 
 # 3000 is okay
-imgNo = 20
+imgNo = 200
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
-rank = 18
-p = 0
+rank = 2
+p = rank
 q = 5
 # mm = 0
 # ###################################################
@@ -35,8 +35,17 @@ q = 5
 
 #############
 # DMD packages
-# dmd = DMD(svd_rank=rank)
+# dmd = dmd(exact=True)
 # dmd.fit(A.T)
+# for eig in dmd.eigs:
+#     print('Eigenvalue {}: distance from unit circle {}'.format(eig, abs(eig.imag**2 + eig.real**2 - 1)))
+# dmd.plot_eigs(show_axes= True, show_unit_circle= True)
+#
+# for mode in dmd.modes.T:
+#     plt.plot(range(1,imgNo+1), mode.real)
+#     plt.title("Modes")
+# plt.show()
+
 #
 # for eig in dmd.eigs:
 #     print('Eigenvalue {}: distance from unit circle {}'.format(eig, np.abs(eig.imag**2 + eig.real**2 - 1)))
@@ -68,8 +77,9 @@ phi, B, V= rdmd(X,Y,A,rank,p)
 # print(omega)
 # print(B)
 # print(phi)
-# computeImags(omega,B,phi, A.shape[1])
 D_new = compute_newD(phi, B,V)
+print("-------------------")
+print(D_new.real)
 # print((D_new[:,0]==D_new[:,0]).all())
 showimages(D_new.real,x_pix,y_pix,imgNo)
 end3 = time.clock()

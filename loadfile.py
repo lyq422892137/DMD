@@ -42,13 +42,13 @@ def showimages(A, x_pix, y_pix, num = 100):
     for i in range(num):
         cv2.imwrite("D:/output/in00{:04d}.png".format(i+1), snapshots2[i])
     cv2.imwrite("d://1.png", snapshots2[0])
-    print(snapshots2[0].shape)
-    print(snapshots2[0])
+    # print(snapshots2[0].shape)
+    # print(snapshots2[0])
     # print(len(snapshots))
     # print(snapshots[0].shape)
-    print("snap[0]:"+str(snapshots2[0]))
-    print("snap[1]:"+str(snapshots2[1]))
-    print("snap[2]:" + str(snapshots2[2]))
+    # print("snap[0]:"+str(snapshots2[0]))
+    # print("snap[1]:"+str(snapshots2[1]))
+    # print("snap[2]:" + str(snapshots2[2]))
     # img = Image.fromarray(snapshots[0])
     # img.show()
     #
