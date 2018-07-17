@@ -36,7 +36,10 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     #     b.append(linalg.lstsq(phi,D[:,i])[0])
     # b = array(b)
 
-    b = linalg.lstsq(phi, X[:, 0])[0]
+    # b = linalg.lstsq(phi, X[:, 0])[0]
+    b = ones((10,)) * 10000
+    print("b:"+ str(mat(b)))
+    print(len(b))
     B = mat(eye(rank_new) * array(b))
     print("B")
     print(B.shape)
@@ -53,7 +56,6 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     # print("phi:" + str((phi[0,0]==phi[0,0].all())))
     # print(phi)
     # print(phi.shape)
-
 
     return phi, B, V2
 

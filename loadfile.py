@@ -18,8 +18,8 @@ def loadimgs(num = 100):
         # plt.imshow(snapshot)
         # plt.show()
 
-    X = A[:,range(len(snapshots)-1)]
-    Y = A[:,range(1,len(snapshots))]
+    X = A[:,0:len(snapshots)-1]
+    Y = A[:,1:len(snapshots)]
 
     x_pix = snapshots[0].shape[0]
     y_pix = snapshots[0].shape[1]

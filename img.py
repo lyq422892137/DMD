@@ -8,13 +8,15 @@ import matplotlib.pyplot as plt
 import time
 from DMD import rdmd
 from DMD import compute_newD
+from svd import rsvd_newMatrix
+from svd import rsvd
 from loadfile import showimages
 
 # 3000 is okay
-imgNo = 200
+imgNo = 20
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
-rank = 2
+rank = 5
 p = rank
 q = 5
 # mm = 0
@@ -26,8 +28,11 @@ q = 5
 # print("Y[400,0]:"+str(Y[400,0]))
 # print(X.shape)
 # print(Y.shape)
-# print((X[:,0]==Y[:,0]).all())
-# print((X[:,1]==Y[:,0]).all())
+print("********************************")
+print("A[:,0]:"+str(A[:,0]))
+print("A[:,1]:"+str(A[:,1]))
+print((A[:,0]==A[:,1]).all())
+print((A[:,0]==A[:,0]).all())
 # print((X==Y).all())
 # print(X)
 # print(A.shape)
@@ -78,9 +83,9 @@ phi, B, V= rdmd(X,Y,A,rank,p)
 # print(B)
 # print(phi)
 D_new = compute_newD(phi, B,V)
-print("-------------------")
-print(D_new.real)
-# print((D_new[:,0]==D_new[:,0]).all())
+# # print("-------------------")
+# # print(D_new.real)
+# # # print((D_new[:,0]==D_new[:,0]).all())
 showimages(D_new.real,x_pix,y_pix,imgNo)
 end3 = time.clock()
 print("rdmd:" + str(end3-start3))
