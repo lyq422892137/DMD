@@ -13,10 +13,10 @@ from svd import rsvd
 from loadfile import showimages
 
 # 3000 is okay
-imgNo = 20
+imgNo = 300
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
-rank = 5
+rank = 40
 p = rank
 q = 5
 # mm = 0
@@ -28,11 +28,11 @@ q = 5
 # print("Y[400,0]:"+str(Y[400,0]))
 # print(X.shape)
 # print(Y.shape)
-print("********************************")
-print("A[:,0]:"+str(A[:,0]))
-print("A[:,1]:"+str(A[:,1]))
-print((A[:,0]==A[:,1]).all())
-print((A[:,0]==A[:,0]).all())
+# print("********************************")
+# print("A[:,0]:"+str(A[:,0]))
+# print("A[:,1]:"+str(A[:,1]))
+# print((A[:,0]==A[:,1]).all())
+# print((A[:,0]==A[:,0]).all())
 # print((X==Y).all())
 # print(X)
 # print(A.shape)

@@ -26,7 +26,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     # for a standard video, delta t = 1
     # thus, omega = ln(L) = modes
     # omega = log(L)
-    print("D:"+str(D))
+    # print("D:"+str(D))
 
     # compute phi (dynamic modes)  and B, the amplitudes
     phi = dot(Y,Vx).dot(Sx).dot(W)
@@ -36,22 +36,36 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     #     b.append(linalg.lstsq(phi,D[:,i])[0])
     # b = array(b)
 
-    # b = linalg.lstsq(phi, X[:, 0])[0]
-    b = ones((10,)) * 10000
-    print("b:"+ str(mat(b)))
-    print(len(b))
+    b = linalg.lstsq(phi, X[:,0])[0]
+    fmodes = log(L)
+    # t = range(D.shape[1])
+    # V = ones((rank_new, D.shape[1]), dtype=complex)
+    # for t in range(D.shape[1]):
+    #     V[:, t] = V[:, t] ** t
+    # b = zeros((10,))
+    # b[0]= 10000
+    # # b[1] = 20000
+    # # b[2] = 30000
+    # b[5] = 20000
+    # print("b:"+ str(mat(b)))
+    # print(len(b))
     B = mat(eye(rank_new) * array(b))
-    print("B")
-    print(B.shape)
+    # print("B")
+    # print(B.shape)
 
     V = ones((rank_new, D.shape[1]), dtype=complex)
+    # print(L[4])
+    print(len(L))
     for i in range(len(L)):
-        V[:, i] = L[i]
-    for t in range(D.shape[1]):
-        V[:, t] = V[:, t] ** t
-    V2 = exp(V)
-    print(V2.shape)
-    print("phi:" + str(phi.shape))
+        V[i,:] = L[i]
+        for t in range(D.shape[1]):
+            V[i,t] = V[i, t] ** t
+    V2 = V
+    # print(L.real)
+    # print("V2")
+    # print(V2.real)
+    # print(V2.shape)
+    # print("phi:" + str(phi.shape))
 
     # print("phi:" + str((phi[0,0]==phi[0,0].all())))
     # print(phi)
