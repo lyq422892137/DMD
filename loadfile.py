@@ -20,18 +20,17 @@ def loadimgs(num = 100):
     x_pix = snapshots[0].shape[0]
     y_pix = snapshots[0].shape[1]
 
-
     return A, X, Y, snapshots, x_pix, y_pix
 
-def showimages(A, x_pix, y_pix, num = 100):
-    print("A.shape: " + str(A.shape))
+
+def showimages(A, x_pix, y_pix, filepath, num = 100):
     snapshots2 = [
         A[:, i].reshape((x_pix, y_pix))
         for i in range(num)
     ]
 
     for i in range(num):
-        cv2.imwrite("D:/output/in00{:04d}.png".format(i+1), snapshots2[i])
+        cv2.imwrite(filepath+"/in00{:04d}.png".format(i+1), snapshots2[i])
 
 
 
