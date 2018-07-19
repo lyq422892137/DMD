@@ -1,10 +1,9 @@
 import numpy as np
 import cv2
 
-def loadimgs(num = 100):
+def loadimgs(filepath, num = 100):
     snapshots = [
-            np.array(cv2.imread('D:/input/in00{:04d}.jpg'.format(i),0),dtype='uint8')
-            # np.array(cv2.imread('/cs/home/yl90/Downloads/corridor/input/in00{:04d}.jpg'.format(i), 0), dtype='uint32')
+            np.array(cv2.imread(filepath + 'in00{:04d}.jpg'.format(i),0),dtype='uint8')
             for i in range(1,num +1)
         ]
 
@@ -30,7 +29,23 @@ def showimages(A, x_pix, y_pix, filepath, num = 100):
     ]
 
     for i in range(num):
-        cv2.imwrite(filepath+"/in00{:04d}.png".format(i+1), snapshots2[i])
+        cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[i])
+
+
+def readgt(filepath, num = 100):
+    snapshots = [
+        np.array(cv2.imread(filepath + 'gt00{:04d}.png'.format(i), 0), dtype='uint8')
+        for i in range(1, num + 1)
+    ]
+
+    # declare B as the (m,n) matrix which contains the whole images
+    B = np.zeros([snapshots[0].shape[0] * snapshots[0].shape[1], len(snapshots)])
+    n = len(snapshots)
+    for i in range(n):
+        B[:, i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
+    return B
+
+
 
 
 
