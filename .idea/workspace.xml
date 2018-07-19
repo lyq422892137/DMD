@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f70f0ce-2310-4288-a1f6-2c4ae42c2496" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img.py" beforeDir="false" afterPath="$PROJECT_DIR$/img.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +17,8 @@
       <file leaf-file-name="DMD.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DMD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-558">
-              <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+            <state relative-caret-position="54">
+              <caret line="115" column="29" lean-forward="true" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
               <folding>
                 <element signature="e#79#99#0" expanded="true" />
               </folding>
@@ -28,19 +29,36 @@
       <file leaf-file-name="img.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/img.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+            <state relative-caret-position="233">
+              <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
               <folding>
-                <element signature="e#0#27#0" expanded="true" />
+                <element signature="e#1#12#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="img_thread.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img_thread.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datasetSelection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/datasetSelection.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file leaf-file-name="rDMDio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rDMDio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="828">
               <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -77,10 +95,12 @@
         <option value="$PROJECT_DIR$/svd.py" />
         <option value="$PROJECT_DIR$/matrix.py" />
         <option value="D:/资料/圣安德鲁斯/Data-Intensive Analysis/毕设/svd.py" />
-        <option value="$PROJECT_DIR$/DMD.py" />
         <option value="$PROJECT_DIR$/loadfile.py" />
         <option value="$PROJECT_DIR$/rDMDio.py" />
+        <option value="$PROJECT_DIR$/datasetSelection.py" />
+        <option value="$PROJECT_DIR$/DMD.py" />
         <option value="$PROJECT_DIR$/img.py" />
+        <option value="$PROJECT_DIR$/img_thread.py" />
       </list>
     </option>
   </component>
@@ -152,24 +172,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="imageSvd" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="DMD" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imageSvd.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="img" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DMD" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -224,20 +226,34 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="py.test in img_thread.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="DMD" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/img_thread.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
     <list>
-      <item itemvalue="Python.imageSvd" />
       <item itemvalue="Python.matrix" />
       <item itemvalue="Python.img3.1" />
       <item itemvalue="Python.DMD" />
       <item itemvalue="Python.img" />
+      <item itemvalue="Python tests.py.test in img_thread.py" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.img" />
+        <item itemvalue="Python tests.py.test in img_thread.py" />
         <item itemvalue="Python.DMD" />
         <item itemvalue="Python.matrix" />
         <item itemvalue="Python.img3.1" />
-        <item itemvalue="Python.imageSvd" />
       </list>
     </recent_temporary>
   </component>
@@ -254,6 +270,14 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="py_test_in_img_thread_py - 2018.07.19 at 17h 26m 16s.xml">
+      <configuration name="py.test in img_thread.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_img_thread_py - 2018.07.19 at 17h 26m 37s.xml">
+      <configuration name="py.test in img_thread.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="1" width="1379" height="767" extended-state="0" />
     <editor active="true" />
@@ -261,12 +285,12 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2509171" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4639017" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37327188" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39938557" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -281,26 +305,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rDMDio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="46" column="27" lean-forward="true" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DMD.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1962">
@@ -593,19 +597,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DMD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-558">
-          <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
-          <folding>
-            <element signature="e#79#99#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/datasetSelection.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/rDMDio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="828">
           <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -613,12 +610,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DMD.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="115" column="29" lean-forward="true" selection-start-line="115" selection-start-column="29" selection-end-line="115" selection-end-column="29" />
+          <folding>
+            <element signature="e#79#99#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img_thread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/img.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        <state relative-caret-position="233">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#1#12#0" expanded="true" />
           </folding>
         </state>
       </provider>

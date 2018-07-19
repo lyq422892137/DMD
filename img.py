@@ -1,12 +1,8 @@
-from rDMDio import loadimgs
 
 import time
 import numpy as np
-from DMD import rdmd
-from DMD import object_extraction
-from DMD import compute_newD
-from rDMDio import showimages
-from rDMDio import readgt
+from DMD import object_extraction, compute_newD
+from rDMDio import showimages, readgt, loadimgs
 
 
 # 3000 is okay
@@ -33,16 +29,17 @@ Full = compute_newD(phi, B, V3)
 showimages(A = Object.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/objects/')
 showimages(A = Background.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/background/')
 showimages(A = Full.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/output/')
-
 end = time.clock()
 print("rdmd:" + str(end-start))
+
+#####################
+# error computation
 
 start2 = time.clock()
 B= readgt(num=imgNo, filepath='D:/groundtruth/')
 Error = B - Object.real
 print(Error.shape)
 error = np.sum(np.sum(Error))/x_pix/y_pix/imgNo
-print(error.shape)
 print("error")
 print(error)
 # showimages(A = Error,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/error/')
