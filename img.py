@@ -7,15 +7,19 @@ from DMD import compute_newD
 from loadfile import showimages
 
 # 3000 is okay
-imgNo = 50
+imgNo = 300
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(imgNo)
 # batchsize =
-rank = 24
+rank = 145
 p = rank
 q = 5
 
 start = time.clock()
-phi, B, V1, V2, V3 = object_extraction(X,Y,A,rank,p)
+
+# for threshold
+# 0.001 is okay, 0.01 is too big, 0.0001 is too small
+
+phi, B, V1, V2, V3 = object_extraction(X,Y,A,rank,p, threshold= 0.003)
 Background = compute_newD(phi, B, V1)
 Object = compute_newD(phi, B, V2)
 Full = compute_newD(phi, B, V3)

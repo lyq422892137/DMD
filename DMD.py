@@ -66,14 +66,12 @@ def geneV(rank_new, n, L):
     V = exp(V)
     return V
 
-def geneV_fmode(rank_new, n, L):
+def geneV_fmode(rank_new, n, L, threshold = 0.001):
+
     V1 = ones((rank_new, n), dtype=complex)
     V2 = ones((rank_new, n), dtype=complex)
     V3 = ones((rank_new, n), dtype=complex)
     fmode = log(L)
-    # threshold = mean(fmode)
-    threshold = median(fmode)
-    # threshold = 0.001
 
     for i in range(len(L)):
         V1[i, :] = fmode[i]
@@ -83,17 +81,24 @@ def geneV_fmode(rank_new, n, L):
         for t in range(n):
             V1[i, t] = V1[i, t] * t
             V2[i, t] = V2[i, t] * t
-            V3[i, :] = V3[i, t] * t
+            V3[i, t] = V3[i, t] * t
 
     V1 = exp(V1)
     V2 = exp(V2)
     V3 = exp(V3)
 
     for j in range(len(L)):
-        if abs(fmode[j]) < threshold:
-            V2[j, :] = 0
+        if abs(fmode[j]) <= threshold:
+            V2[j,:] = 0
         else:
-            V1[j, :] = 0
+            V1[j,:] = 0
+
+    # print("V1")
+    # print(V1)
+    # print("V2")
+    # print(V2)
+    # V2 = V2 * 10
+
 
     return V1, V2, V3
 
@@ -102,7 +107,7 @@ def compute_newD(phi,B,V):
     D_new = dot(phi, B).dot(V)
     return D_new
 
-def object_extraction(X, Y, D, rank=5, p=5, q=5):
+def object_extraction(X, Y, D, rank=5, p=5, q=5, threshold = 0.001):
     random.seed(7)
     rank_new = rank + p
     Ux, sigmax, Vx = rsvd(X, rank, p, q)
@@ -115,7 +120,7 @@ def object_extraction(X, Y, D, rank=5, p=5, q=5):
 
     B, b = compute_B(phi, rank_new, X[:, 0])
 
-    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L)
+    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L, threshold=threshold)
 
     return phi, B, V1, V2, V3
 
