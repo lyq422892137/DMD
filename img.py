@@ -1,11 +1,13 @@
 from rDMDio import loadimgs
 
 import time
+import numpy as np
 from DMD import rdmd
 from DMD import object_extraction
 from DMD import compute_newD
 from rDMDio import showimages
 from rDMDio import readgt
+
 
 # 3000 is okay
 imgNo = 200
@@ -39,8 +41,10 @@ start2 = time.clock()
 B= readgt(num=imgNo, filepath='D:/groundtruth/')
 Error = B - Object.real
 print(Error.shape)
-# print("error")
-# print(error)
+error = np.sum(np.sum(Error))/x_pix/y_pix/imgNo
+print(error.shape)
+print("error")
+print(error)
 # showimages(A = Error,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/error/')
 end2 = time.clock()
 print("error estimation time:" + str(end2-start2))
