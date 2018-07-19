@@ -72,8 +72,8 @@ def geneV_fmode(rank_new, n, L):
     V3 = ones((rank_new, n), dtype=complex)
     fmode = log(L)
     # threshold = mean(fmode)
-    # threshold = median(fmode)
-    threshold = 0.001
+    threshold = median(fmode)
+    # threshold = 0.001
 
     for i in range(len(L)):
         V1[i, :] = fmode[i]
@@ -91,11 +91,9 @@ def geneV_fmode(rank_new, n, L):
 
     for j in range(len(L)):
         if abs(fmode[j]) < threshold:
-            V1[j, :] = fmode[j]
             V2[j, :] = 0
         else:
             V1[j, :] = 0
-            V2[j, :] = fmode[j]
 
     return V1, V2, V3
 
