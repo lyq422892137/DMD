@@ -128,15 +128,23 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
     if n <= batchsize:
         object_extraction(X, Y, D, rank, p, q, threshold)
     else:
-        parameters = []
+        M = {}
+        parameters = {}
         start = 0
         Dend = batchsize - 1
         subEnd = batchsize -2
 
+        rank_new = int(n / batchsize)
         if mod(n,batchsize) == 0:
-            rank_new = int(n/batchsize)
+            for i in range(int(n/batchsize)):
+                M["D" + str(i)] = D[:,start:Dend]
+                start = start + batchsize
+                Dend = Dend + batchsize
+
         else:
             print("A")
+
+        print(M)
 
  # for i in range(int(n / batchsize)):
  #                parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters['V2' + str(i)],parameters['V3' + str(i)] = object_extraction(X[:, start:subEnd], Y[:,start:subEnd],D[:,start:Dend], rank_new, p, q, threshold)
