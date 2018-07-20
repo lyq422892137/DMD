@@ -92,13 +92,12 @@ def geneV_fmode(rank_new, n, L, threshold = 0.001):
             V2[j,:] = 0
         else:
             V1[j,:] = 0
+            # V2[j, :] = 255
 
     # print("V1")
     # print(V1)
     # print("V2")
     # print(V2)
-    # V2 = V2 * 10
-
 
     return V1, V2, V3
 
@@ -107,7 +106,7 @@ def compute_newD(phi,B,V):
     D_new = dot(phi, B).dot(V)
     return D_new
 
-def object_extraction(X, Y, D, rank=5, p=5, q=5, threshold = 0.001):
+def object_extraction(X, Y, D, rank, p, q, threshold):
     random.seed(7)
     rank_new = rank + p
     Ux, sigmax, Vx = rsvd(X, rank, p, q)
@@ -123,6 +122,28 @@ def object_extraction(X, Y, D, rank=5, p=5, q=5, threshold = 0.001):
     V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L, threshold=threshold)
 
     return phi, B, V1, V2, V3
+
+def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
+    n = D.shape[1]
+    if n <= batchsize:
+        object_extraction(X, Y, D, rank, p, q, threshold)
+    else:
+        parameters = []
+        start = 0
+        Dend = batchsize - 1
+        subEnd = batchsize -2
+
+        if mod(n,batchsize) == 0:
+            rank_new = int(n/batchsize)
+        else:
+            print("A")
+
+ # for i in range(int(n / batchsize)):
+ #                parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters['V2' + str(i)],parameters['V3' + str(i)] = object_extraction(X[:, start:subEnd], Y[:,start:subEnd],D[:,start:Dend], rank_new, p, q, threshold)
+ #            start = start + batchsize
+ #            Dend = Dend + batchsize
+ #            subEnd = subEnd + batchsize
+
 
 
 
