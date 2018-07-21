@@ -2,7 +2,7 @@
 import time
 import numpy as np
 from DMD import object_extraction, compute_newD, rDMD_batch
-from rDMDio import showimages, readgt, loadimgs
+from rDMDio import showimages, readgt, loadimgs, seperateMatrix
 
 
 # 3000 is okay
@@ -23,13 +23,11 @@ start = time.clock()
 
 # phi, B, V1, V2, V3 = object_extraction(X,Y,A,rank,p, threshold= 0.009)
 output, parameters = rDMD_batch(X,Y,A,rank)
-# Background = compute_newD(phi, B, V1)
-# Object = compute_newD(phi, B, V2)
-# Full = compute_newD(phi, B, V3)
-#
-# showimages(A = Object.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/objects/')
-# showimages(A = Background.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/background/')
-# showimages(A = Full.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/output/')
+Background, Objects, Full = seperateMatrix(output,A.shape[1])
+
+showimages(A = Objects.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/objects/')
+showimages(A = Background.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/background/')
+showimages(A = Full.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/output/')
 end = time.clock()
 print("rdmd:" + str(end-start))
 
