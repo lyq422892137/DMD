@@ -132,47 +132,52 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
         parameters = {}
         output = {}
         Dstart = 0
-        Dend = batchsize - 1
+        Dend = batchsize
         subStart = 0
-        subEnd = batchsize -2
+        subEnd = batchsize - 1
 
         rank_new = int(n / batchsize)
-        if mod(n,batchsize) == 0:
-            for i in range(int(n/batchsize)):
-                M["D" + str(i)] = D[:,Dstart:Dend]
-                M["X"+str(i)] = X[:,subStart:subEnd]
-                M["Y" + str(i)] = Y[:, subStart:subEnd]
 
-                parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters[
-                    'V2' + str(i)], parameters['V3' + str(i)] = object_extraction(X= M["X"+str(i)], Y=M["X"+str(i)],
-                                                                                  D=M["D" + str(i)],
-                                                                                  rank=rank_new, p=p, q=q,
-                                                                                  threshold=threshold)
+        for i in range(int(n / batchsize)):
+            M["D" + str(i)] = D[:, Dstart:Dend]
+            M["X" + str(i)] = X[:, subStart:subEnd]
+            M["Y" + str(i)] = Y[:, subStart:subEnd]
 
-                output["background" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)])
-                output["object" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
-                                                             parameters['V2' + str(i)])
-                output["full" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
-                                                             parameters['V3' + str(i)])
+            parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters[
+                'V2' + str(i)], parameters['V3' + str(i)] = object_extraction(X=M["X" + str(i)], Y=M["X" + str(i)],
+                                                                              D=M["D" + str(i)],
+                                                                              rank=rank_new, p=p, q=q,
+                                                                              threshold=threshold)
 
-                Dstart = Dend
-                Dend = Dend + batchsize
-                subStart = subEnd
-                subEnd = subEnd + batchsize
+            output["background" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
+                                                         parameters['V1' + str(i)])
+            output["object" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
+                                                     parameters['V2' + str(i)])
+            output["full" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
+                                                   parameters['V3' + str(i)])
 
-        else:
-            print("A")
-
-        print(len(output))
-
- # for i in range(int(n / batchsize)):
- #                parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters['V2' + str(i)],parameters['V3' + str(i)] = object_extraction(X[:, start:subEnd], Y[:,start:subEnd],D[:,start:Dend], rank_new, p, q, threshold)
- #            start = start + batchsize
- #            Dend = Dend + batchsize
- #            subEnd = subEnd + batchsize
+            Dstart = Dend
+            Dend = Dend + batchsize
+            subStart = subEnd
+            subEnd = subEnd + batchsize
 
 
+        if mod(n, batchsize) != 0:
+            M["D" + str(rank_new)] = D[:, Dstart:]
+            M["X" + str(rank_new)] = X[:, subStart:]
+            M["Y" + str(rank_new)] = Y[:, subStart:]
 
+            parameters['phi' + str(rank_new)], parameters['B' + str(rank_new)], parameters['V1' + str(rank_new)], parameters[
+                'V2' + str(rank_new)], parameters['V3' + str(rank_new)] = object_extraction(X=M["X" + str(rank_new)], Y=M["X" + str(rank_new)],
+                                                                              D=M["D" + str(rank_new)],
+                                                                              rank= int(mod(n,batchsize)/batchsize * rank_new), p=p, q=q,
+                                                                              threshold=threshold)
 
+            output["background" + str(rank_new)] = compute_newD(parameters['phi' + str(rank_new)], parameters['B' + str(rank_new)],
+                                                         parameters['V1' + str(rank_new)])
+            output["object" + str(rank_new)] = compute_newD(parameters['phi' + str(rank_new)], parameters['B' + str(rank_new)],
+                                                     parameters['V2' + str(rank_new)])
+            output["full" + str(rank_new)] = compute_newD(parameters['phi' + str(rank_new)], parameters['B' + str(rank_new)],
+                                                   parameters['V3' + str(rank_new)])
 
-
+        return output, parameters

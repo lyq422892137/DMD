@@ -22,7 +22,7 @@ start = time.clock()
 # 0.001 is okay, 0.01 is too big, 0.0001 is too small
 
 # phi, B, V1, V2, V3 = object_extraction(X,Y,A,rank,p, threshold= 0.009)
-rDMD_batch(X,Y,A,rank)
+output, parameters = rDMD_batch(X,Y,A,rank)
 # Background = compute_newD(phi, B, V1)
 # Object = compute_newD(phi, B, V2)
 # Full = compute_newD(phi, B, V3)

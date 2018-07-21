@@ -45,6 +45,11 @@ def readgt(filepath, num = 100):
         B[:, i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
     return B
 
+def seperateMatrix(matrices):
+    n = len(matrices)/3
+
+    
+
 
 
 
