@@ -5,29 +5,32 @@ from DMD import object_extraction, compute_newD, rDMD_batch
 from rDMDio import showimages, readgt, loadimgs, seperateMatrix
 
 
-# 3000 is okay
+# 3000 is okay, > 20 is better
 imgNo = 200
 batchsize = 100
+threshold = 0.001
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(num = imgNo, filepath='D:/input/')
 rank = 98
 p = rank
 q = 5
 
-
 #############################################
 # rdmd & backgorund/foreground extraction
 
 start = time.clock()
-# for threshold
-# 0.001 is okay, 0.01 is too big, 0.0001 is too small
 
-# phi, B, V1, V2, V3 = object_extraction(X,Y,A,rank,p, threshold= 0.009)
-output, parameters = rDMD_batch(X,Y,A,rank)
-Background, Objects, Full = seperateMatrix(output,A.shape[1])
+output, parameters = rDMD_batch(X=X, Y=Y, D=A, rank=rank, threshold=threshold, p=p, q=q, batchsize=batchsize)
+Background, Objects, Full = seperateMatrix(output, A.shape[1])
 
-showimages(A = Objects.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/objects/')
-showimages(A = Background.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/background/')
-showimages(A = Full.real,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/output/')
+# phi, B, V1, V2, V3 = object_extraction(X=X, Y=Y, D=A, rank=rank, threshold=threshold, p=p, q=q)
+#
+# Background = compute_newD(phi,B,V1)
+# Objects = compute_newD(phi,B,V2)
+# Full = compute_newD(phi,B,V3)
+
+showimages(A=Objects.real, x_pix=x_pix, y_pix=y_pix, num=imgNo, filepath='D:/objects/')
+showimages(A=Background.real, x_pix=x_pix, y_pix=y_pix, num=imgNo, filepath='D:/background/')
+showimages(A=Full.real, x_pix=x_pix, y_pix=y_pix, num=imgNo, filepath='D:/output/')
 end = time.clock()
 print("rdmd:" + str(end-start))
 
@@ -36,11 +39,9 @@ print("rdmd:" + str(end-start))
 
 # start2 = time.clock()
 # B= readgt(num=imgNo, filepath='D:/groundtruth/')
-# Error = B - Object.real
-# print(Error.shape)
+# Error = B - Objects.real
 # error = np.sum(np.sum(Error))/x_pix/y_pix/imgNo
-# print("error")
-# print(error)
-# # showimages(A = Error,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/error/')
+# print("error: " + str(error))
+# showimages(A = Error,x_pix = x_pix,y_pix = y_pix,num= imgNo, filepath='D:/error/')
 # end2 = time.clock()
 # print("error estimation time:" + str(end2-start2))

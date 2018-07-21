@@ -48,17 +48,24 @@ def readgt(filepath, num = 100):
 def seperateMatrix(matrices, n):
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
-    Background = []
-    Objects = []
-    Full = []
+    batchsize = matrices["background0"].shape[1]
+    Background = np.zeros((m,n), dtype='complex')
+    Objects = np.zeros((m,n), dtype='complex')
+    Full = np.zeros((m,n), dtype='complex')
+    start = 0
+    end = batchsize
     for i in range(num):
-        Background.append( matrices["background" + str(i)])
-        Objects.append(matrices["object" + str(i)])
-        Full.append(matrices["full" + str(i)])
+        if (i == num-1) and (np.mod(n,batchsize) != 0):
+            Background[:, start: ] = matrices["background" + str(i)]
+            Objects[:, start:] = matrices["object" + str(i)]
+            Full[:, start:] = matrices["full" + str(i)]
+        else:
+            Background[:, start:end]= matrices["background" + str(i)]
+            Objects[:, start:end] = matrices["object" + str(i)]
+            Full[:, start:end] = matrices["full" + str(i)]
+            start = end
+            end = end + batchsize
 
-    Background = np.array(Background).reshape((m,n))
-    Objects = np.array(Objects).reshape((m, n))
-    Full = np.array(Full).reshape((m, n))
     return Background, Objects, Full
 
 
