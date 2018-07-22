@@ -1,8 +1,24 @@
-from svd import rsvd
-from numpy import *
-import gc
-import time
+# author: yl90
 
+# for rsvd computation
+from svd import rsvd
+# for mathematical calculation
+from numpy import *
+# for memory cleaning
+import gc
+
+
+# rdmd: randomized dynamic mode decomposition
+# inputs:
+# D: the whole input matrix
+# X: the first frame matrix from 0 to n-2
+# Y: the second frame matrix from 1 to n-1
+# p: the oversample parameter
+# q: the power used for calculate rsvd
+# outputs:
+# phi: the dynamic mode
+# B: the diagonal matrix of the amplitudes
+# V: the vandermonde matrix
 def rdmd(X, Y, D, rank=5, p=5, q=5):
     # compute X's svd:
     random.seed(7)
@@ -20,10 +36,13 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     # compute phi (dynamic modes)  and B, the amplitudes
     phi = compute_phi(Y, Vx, Sx, W)
 
+    # compute B
     B, b = compute_B(phi, rank_new, X[:,0])
 
+    # compute the vandermonde matrix
     V = geneV(rank_new, D.shape[1], L)
 
+    # memory cleaning
     del M_hat, L, W, X, Y, D, Ux, Sx, Vx, b
     gc.collect()
 
@@ -35,10 +54,10 @@ def compute_Mhat(U,Y,V,S):
     gc.collect()
     return M_hat
 
+# a, b = np.linalg.eig(x)
+# a is eigenvalues, b is eigenvector
+# here， L = a, W = b
 def compute_eig(X):
-    # a, b = np.linalg.eig(x)
-    # a is eigenvalues, b is eigenvector
-    # here， L = a, W = b
     L, W = linalg.eig(X)
     del X
     gc.collect()
@@ -69,6 +88,11 @@ def geneV(rank_new, n, L):
     gc.collect()
     return V
 
+# use Fourier Mode to generate the vandermonde matrix
+# separate the matrix into three kinds:
+# (1) V2 for objects whose fourier modes are bigger than threshold
+# (2) V1 for background whose fourier modes are smaller than/equal to threshold
+# (3) V3 the new images with the entire fourier modes
 def geneV_fmode(rank_new, n, L, threshold):
     V1 = zeros((rank_new, n), dtype=complex)
     V2 = zeros((rank_new, n), dtype=complex)
@@ -95,24 +119,32 @@ def geneV_fmode(rank_new, n, L, threshold):
         else:
             V1[j,:] = 0
 
-    # print("V1")
-    # print(V1)
-    # print("V2")
-    # print(V2)
-    # print("V3")
-    # print(V3)
     del fmode, L, rank_new, threshold
     gc.collect()
 
     return V1, V2, V3
 
-
+# compute the new image matrix by the rdmd formula
 def compute_newD(phi,B,V):
     D_new = dot(phi, B).dot(V)
     del phi, B, V
     gc.collect()
     return D_new
 
+# the method arrange the rdmd computation and background/foreground extraction process:
+# inputs:
+# D: the whole input matrix
+# X: the first frame matrix from 0 to n-2
+# Y: the second frame matrix from 1 to n-1
+# p: the oversample parameter
+# q: the power used for calculate rsvd
+# rank: the target rank for decompostion
+# threshold: used for classify background/foreground
+# outputs:
+# parameters for a new image matrix computation:
+# phi: the dynamic mode
+# B: the diagonal matrix of the amplitudes
+# V1, V2, V3: background, foreground, and the new image matrices individually
 def object_extraction(X, Y, D, rank, p, q, threshold):
     random.seed(7)
     rank_new = rank + p
@@ -133,76 +165,7 @@ def object_extraction(X, Y, D, rank, p, q, threshold):
 
     return phi, B, V1, V2, V3
 
-def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
-    n = D.shape[1]
-    M = {}
-    parameters = {}
-    output = {}
-
-    if n <= batchsize:
-        parameters["phi0"], parameters["B0"], parameters["V10"], parameters["V20"], parameters["V30"] \
-            = object_extraction(X=X, Y=Y, D=D, rank=rank, p=p, q=q, threshold=threshold)
-        output["background0"] = compute_newD(parameters['phi0'], parameters['B0'], parameters['V10'])
-        output["object0"] = compute_newD(parameters['phi0'], parameters['B0'], parameters['V20'])
-        output["full0"] = compute_newD(parameters['phi0'], parameters['B0'], parameters['V30'])
-
-    else:
-        Dstart = 0
-        Dend = batchsize
-        subStart = 0
-        subEnd = batchsize - 1
-
-        rank_new = int((rank + p) * batchsize/n)
-        num = int(n / batchsize)
-
-        for i in range(num):
-            print("round " + str(i) + ":")
-
-            M["D" + str(i)] = D[:, Dstart:Dend]
-            M["X" + str(i)] = X[:, subStart:subEnd]
-            M["Y" + str(i)] = Y[:, subStart:subEnd]
-
-            parameters['phi' + str(i)], parameters['B' + str(i)], parameters['V1' + str(i)], parameters[
-                'V2' + str(i)], parameters['V3' + str(i)] = object_extraction(X=M["X" + str(i)], Y=M["Y" + str(i)],
-                                                                              D=M["D" + str(i)],
-                                                                              rank=rank_new, p=0, q=q,
-                                                                              threshold=threshold)
-
-            output["background" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
-                                                         parameters['V1' + str(i)])
-            output["object" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
-                                                     parameters['V2' + str(i)])
-            output["full" + str(i)] = compute_newD(parameters['phi' + str(i)], parameters['B' + str(i)],
-                                                   parameters['V3' + str(i)])
-
-            Dstart = Dend
-            Dend = Dend + batchsize
-            subStart = subEnd
-            subEnd = subEnd + batchsize
-
-
-        if mod(n, batchsize) != 0:
-            M["D" + str(num)] = D[:, Dstart:]
-            M["X" + str(num)] = X[:, subStart:]
-            M["Y" + str(num)] = Y[:, subStart:]
-
-            parameters['phi' + str(num)], parameters['B' + str(num)], parameters['V1' + str(num)], parameters[
-                'V2' + str(num)], parameters['V3' + str(num)] = object_extraction(X=M["X" + str(num)], Y=M["Y" + str(num)],
-                                                                              D=M["D" + str(num)],
-                                                                              rank= int(rank_new * mod(n,batchsize) / batchsize), p=0, q=q,
-                                                                              threshold=threshold)
-
-            output["background" + str(num)] = compute_newD(parameters['phi' + str(num)], parameters['B' + str(num)],
-                                                         parameters['V1' + str(num)])
-            output["object" + str(num)] = compute_newD(parameters['phi' + str(num)], parameters['B' + str(num)],
-                                                     parameters['V2' + str(num)])
-            output["full" + str(num)] = compute_newD(parameters['phi' + str(num)], parameters['B' + str(num)],
-                                                   parameters['V3' + str(num)])
-
-    del Dstart, Dend, subEnd, subStart, X, Y, D
-    gc.collect()
-    return output, parameters
-
+# compute errors between groundtruth and objects
 def errorComputation(Objects, G, x_pix, y_pix):
     ImgNo = Objects.shape[1]
     Error = G - Objects

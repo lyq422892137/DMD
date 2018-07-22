@@ -1,13 +1,12 @@
 
 import time
-from DMD import object_extraction, compute_newD, errorComputation
-from rDMDio import loadimgs,  downloadImgs, readgt
+from DMD import object_extraction, compute_newD
+from rDMDio import loadimgs,  downloadImgs
 import gc
 import numpy as np
 
 
 gc.collect()
-
 # 3000 is okay, > 20 is better
 imgNo = 1700
 batchsize = 100
@@ -23,17 +22,6 @@ q = 5
 # rdmd & backgorund/foreground extraction
 
 start = time.clock()
-
-# output, parameters = rDMD_batch(X=X, Y=Y, D=A, rank=rank, threshold=threshold, p=p, q=q, batchsize=batchsize)
-# del parameters
-# del X, Y, A, rank, threshold, p, q, batchsize
-# gc.collect()
-
-# errors = showImgs_batch_error(matrices=output, n=A.shape[1], x_pix=x_pix, y_pix=y_pix)
-# print("Total errors: " + str(errors))
-
-# showImgs_batch(matrices=output, n=n, x_pix=x_pix, y_pix=y_pix)
-
 
 times = int(n/batchsize)
 M = {}
