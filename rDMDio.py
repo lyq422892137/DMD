@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import gc
+from DMD import errorComputation
 
 def loadimgs(filepath, num = 100):
     snapshots = [
@@ -128,12 +129,6 @@ def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath
     showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath, flag=flag)
     showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath, flag=flag)
 
-def errorComputation(Objects, G, x_pix, y_pix):
-    ImgNo = Objects.shape[1]
-    Error = G - Objects
-    error = np.sum(np.sum(Error))/ImgNo/x_pix/y_pix
-    print("sub-error: " + str(error))
-    return error, Error
 
 
 

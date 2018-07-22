@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f70f0ce-2310-4288-a1f6-2c4ae42c2496" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DMD.py" beforeDir="false" afterPath="$PROJECT_DIR$/DMD.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img.py" beforeDir="false" afterPath="$PROJECT_DIR$/img.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rDMDio.py" beforeDir="false" afterPath="$PROJECT_DIR$/rDMDio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/svd.py" beforeDir="false" afterPath="$PROJECT_DIR$/svd.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DMD.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DMD.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DMD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+            <state relative-caret-position="316">
+              <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -29,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="img.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="img.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/img.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+            <state relative-caret-position="58">
+              <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -44,8 +42,8 @@
       <file leaf-file-name="rDMDio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rDMDio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+            <state relative-caret-position="54">
+              <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -68,6 +66,7 @@
       <find>rank</find>
       <find>print</find>
       <find>round</find>
+      <find>G</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,9 +84,10 @@
         <option value="$PROJECT_DIR$/datasetSelection.py" />
         <option value="$PROJECT_DIR$/img_thread.py" />
         <option value="$PROJECT_DIR$/svd.py" />
-        <option value="$PROJECT_DIR$/img.py" />
-        <option value="$PROJECT_DIR$/rDMDio.py" />
+        <option value="$PROJECT_DIR$/DMD_2.py" />
         <option value="$PROJECT_DIR$/DMD.py" />
+        <option value="$PROJECT_DIR$/rDMDio.py" />
+        <option value="$PROJECT_DIR$/img.py" />
       </list>
     </option>
   </component>
@@ -305,16 +305,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DMD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1962">
-          <caret line="110" column="1" selection-start-line="110" selection-start-column="1" selection-end-line="110" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rDMDio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -605,32 +595,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img.py">
+    <entry file="file://$PROJECT_DIR$/DMD_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="37" column="10" lean-forward="true" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
+        <state relative-caret-position="1338">
+          <caret line="206" lean-forward="true" selection-start-line="206" selection-end-line="206" />
           <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rDMDio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DMD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="158" column="42" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
+        <state relative-caret-position="316">
+          <caret line="211" lean-forward="true" selection-start-line="211" selection-end-line="211" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rDMDio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
           </folding>
         </state>
       </provider>

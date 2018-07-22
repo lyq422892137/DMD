@@ -203,4 +203,13 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
     gc.collect()
     return output, parameters
 
+def errorComputation(Objects, G, x_pix, y_pix):
+    ImgNo = Objects.shape[1]
+    Error = G - Objects
+    error = np.sum(np.sum(Error))/ImgNo/x_pix/y_pix
+    print("sub-error: " + str(error))
+    return error, Error
+
+
+
 
