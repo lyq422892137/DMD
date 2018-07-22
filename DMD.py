@@ -178,3 +178,5 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
                                                    parameters['V3' + str(num)])
 
     return output, parameters
+
+

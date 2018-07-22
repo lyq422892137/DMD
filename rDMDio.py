@@ -32,7 +32,6 @@ def showimages(A, x_pix, y_pix, filepath, flag, num = 100):
     for i in range(flag, flag + batchsize):
         cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[n])
         n = n + 1
-    return 1
 
 def readgt(filepath, num = 100):
     snapshots = [
@@ -47,13 +46,15 @@ def readgt(filepath, num = 100):
         B[:, i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
     return B
 
-def seperateMatrix(matrices, n, x_pix, y_pix):
+def showImgs_batch(matrices, n, x_pix, y_pix):
+    G = readgt(num=n, filepath="D:/groundtruth")
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
     batchsize = matrices["background0"].shape[1]
     Background = np.zeros((m,batchsize), dtype='complex')
     Objects = np.zeros((m,batchsize), dtype='complex')
     Full = np.zeros((m,batchsize), dtype='complex')
+    Groundtruth = np.zeros((m,batchsize))
 
     for i in range(num):
         if (i == num-1) and (np.mod(n,batchsize) != 0):
@@ -68,16 +69,21 @@ def seperateMatrix(matrices, n, x_pix, y_pix):
 
         downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
                      backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag= i*batchsize)
-    return 1
+
 
 def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath, fullpath, flag):
-    print("%%%%%%%%%%%%%%%%%%%%%%%")
     showimages(A=objects, x_pix=x_pix, y_pix=y_pix, num=num, filepath=objpath, flag=flag)
-    print("%%%%%%%%%%%%%%%%%%%%%%%")
     showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath, flag=flag)
-    print("%%%%%%%%%%%%%%%%%%%%%%%")
     showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath, flag=flag)
-    return 1
+
+def errorComputation(Objects, G, filepath, x_pix, y_pix, ImgNo=100):
+    m = G.shape[0]
+    n = Objects.shape[1]
+    groundtruth = np.zeros((m,n))
+    Error = G - Objects
+    error = np.sum(np.sum(Error)) / x_pix / y_pix / n
+    print("error: " + str(error))
+    showimages(A=Error, x_pix=x_pix, y_pix=y_pix, num=, filepath='D:/error/')
 
 
 
