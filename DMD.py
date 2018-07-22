@@ -136,6 +136,7 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
         num = int(n / batchsize)
 
         for i in range(num):
+            print("round " + str(i) + ":")
             M["D" + str(i)] = D[:, Dstart:Dend]
             M["X" + str(i)] = X[:, subStart:subEnd]
             M["Y" + str(i)] = Y[:, subStart:subEnd]
