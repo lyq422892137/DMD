@@ -22,14 +22,21 @@ def loadimgs(filepath, num = 100):
     return A, X, Y, snapshots, x_pix, y_pix
 
 
-def showimages(A, x_pix, y_pix, filepath, num = 100):
+def showimages(A, x_pix, y_pix, filepath, num = 100, flag = 100):
+    batchsize = A.shape[1]
     snapshots2 = [
         A[:, i].reshape((x_pix, y_pix))
         for i in range(num)
     ]
+    n = 0
+    for i in range(flag, flag + batchsize):
+        cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[n])
+        print(n)
+        n = n + 1
 
-    for i in range(num):
-        cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[i])
+
+
+
 
 
 def readgt(filepath, num = 100):
@@ -45,29 +52,38 @@ def readgt(filepath, num = 100):
         B[:, i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
     return B
 
-def seperateMatrix(matrices, n):
+def seperateMatrix(matrices, n, x_pix, y_pix,):
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
     batchsize = matrices["background0"].shape[1]
-    Background = np.zeros((m,n), dtype='complex')
-    Objects = np.zeros((m,n), dtype='complex')
-    Full = np.zeros((m,n), dtype='complex')
-    start = 0
-    end = batchsize
+    Background = np.zeros((m,batchsize), dtype='complex')
+    Objects = np.zeros((m,batchsize), dtype='complex')
+    Full = np.zeros((m,batchsize), dtype='complex')
+
     for i in range(num):
         if (i == num-1) and (np.mod(n,batchsize) != 0):
-            Background[:, start: ] = matrices["background" + str(i)]
-            Objects[:, start:] = matrices["object" + str(i)]
-            Full[:, start:] = matrices["full" + str(i)]
+            Background[:, 0:] = matrices["background" + str(i)]
+            Objects[:, 0:] = matrices["object" + str(i)]
+            Full[:, 0:] = matrices["full" + str(i)]
+
         else:
-            Background[:, start:end]= matrices["background" + str(i)]
-            Objects[:, start:end] = matrices["object" + str(i)]
-            Full[:, start:end] = matrices["full" + str(i)]
-            start = end
-            end = end + batchsize
+            Background[:, 0:batchsize]= matrices["background" + str(i)]
+            Objects[:, 0:batchsize] = matrices["object" + str(i)]
+            Full[:, 0:batchsize] = matrices["full" + str(i)]
 
-    return Background, Objects, Full
+        downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
+                     backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/')
+        print("------------------")
+    return 1
 
+def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath, fullpath):
+    print("%%%%%%%%%%%%%%%%%%%%%%%")
+    showimages(A=objects, x_pix=x_pix, y_pix=y_pix, num=num, filepath=objpath)
+    print("%%%%%%%%%%%%%%%%%%%%%%%")
+    showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath)
+    print("%%%%%%%%%%%%%%%%%%%%%%%")
+    showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath)
+    return 1
 
 
 
