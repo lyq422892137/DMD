@@ -6,11 +6,11 @@ from rDMDio import showimages, readgt, loadimgs, seperateMatrix, downloadImgs
 
 
 # 3000 is okay, > 20 is better
-imgNo = 100
+imgNo = 200
 batchsize = 100
 threshold = 0.001
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(num = imgNo, filepath='D:/input/')
-rank = 49
+rank = 98
 p = rank
 q = 5
 

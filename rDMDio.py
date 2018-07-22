@@ -22,7 +22,7 @@ def loadimgs(filepath, num = 100):
     return A, X, Y, snapshots, x_pix, y_pix
 
 
-def showimages(A, x_pix, y_pix, filepath, num = 100, flag = 100):
+def showimages(A, x_pix, y_pix, filepath, flag, num = 100):
     batchsize = A.shape[1]
     snapshots2 = [
         A[:, i].reshape((x_pix, y_pix))
@@ -31,13 +31,8 @@ def showimages(A, x_pix, y_pix, filepath, num = 100, flag = 100):
     n = 0
     for i in range(flag, flag + batchsize):
         cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[n])
-        print(n)
         n = n + 1
-
-
-
-
-
+    return 1
 
 def readgt(filepath, num = 100):
     snapshots = [
@@ -52,7 +47,7 @@ def readgt(filepath, num = 100):
         B[:, i] = snapshots[i].reshape((snapshots[i].shape[0] * snapshots[i].shape[1],))
     return B
 
-def seperateMatrix(matrices, n, x_pix, y_pix,):
+def seperateMatrix(matrices, n, x_pix, y_pix):
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
     batchsize = matrices["background0"].shape[1]
@@ -72,17 +67,16 @@ def seperateMatrix(matrices, n, x_pix, y_pix,):
             Full[:, 0:batchsize] = matrices["full" + str(i)]
 
         downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
-                     backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/')
-        print("------------------")
+                     backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag= i*batchsize)
     return 1
 
-def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath, fullpath):
+def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath, fullpath, flag):
     print("%%%%%%%%%%%%%%%%%%%%%%%")
-    showimages(A=objects, x_pix=x_pix, y_pix=y_pix, num=num, filepath=objpath)
+    showimages(A=objects, x_pix=x_pix, y_pix=y_pix, num=num, filepath=objpath, flag=flag)
     print("%%%%%%%%%%%%%%%%%%%%%%%")
-    showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath)
+    showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath, flag=flag)
     print("%%%%%%%%%%%%%%%%%%%%%%%")
-    showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath)
+    showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath, flag=flag)
     return 1
 
 
