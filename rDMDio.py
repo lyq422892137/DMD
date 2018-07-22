@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import gc
 
 def loadimgs(filepath, num = 100):
     snapshots = [
@@ -32,6 +33,8 @@ def showimages(A, x_pix, y_pix, filepath, flag, num = 100):
     for i in range(flag, flag + batchsize):
         cv2.imwrite(filepath+"in00{:04d}.png".format(i+1), snapshots2[n])
         n = n + 1
+    del A, filepath, snapshots2
+    gc.collect()
 
 def readgt(filepath, num = 100):
     snapshots = [
@@ -48,39 +51,51 @@ def readgt(filepath, num = 100):
 
 
 def showImgs_batch(matrices, n, x_pix, y_pix):
+
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
     batchsize = matrices["background0"].shape[1]
-    Background = np.zeros((m,batchsize), dtype='complex')
-    Objects = np.zeros((m,batchsize), dtype='complex')
-    Full = np.zeros((m,batchsize), dtype='complex')
+
 
     for i in range(num):
-        if (i == num-1) and (np.mod(n,batchsize) != 0):
+        Background = np.zeros((m, batchsize), dtype='complex')
+        Objects = np.zeros((m, batchsize), dtype='complex')
+        Full = np.zeros((m, batchsize), dtype='complex')
+
+        if (i == num-1) and (np.mod(n, batchsize) != 0):
             Background[:, 0:] = matrices["background" + str(i)]
             Objects[:, 0:] = matrices["object" + str(i)]
             Full[:, 0:] = matrices["full" + str(i)]
 
         else:
-            Background[:, 0:batchsize]= matrices["background" + str(i)]
+            Background[:, 0:batchsize] = matrices["background" + str(i)]
             Objects[:, 0:batchsize] = matrices["object" + str(i)]
             Full[:, 0:batchsize] = matrices["full" + str(i)]
 
         downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
                      backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag= i*batchsize)
+        del Background, Objects, Full
+        gc.collect()
+
+    del matrices
+    gc.collect()
 
 
 def showImgs_batch_error(matrices, n, x_pix, y_pix):
     G = readgt(num=n, filepath="D:\groundtruth")
+
     num = int(len(matrices)/3)
     m = matrices["background0"].shape[0]
     batchsize = matrices["background0"].shape[1]
+
     Background = np.zeros((m,batchsize), dtype='complex')
     Objects = np.zeros((m,batchsize), dtype='complex')
     Full = np.zeros((m,batchsize), dtype='complex')
     Groundtruth = np.zeros((m,batchsize))
+
     start = 0
     end = batchsize
+
     errors = 0
 
     for i in range(num):
@@ -105,6 +120,7 @@ def showImgs_batch_error(matrices, n, x_pix, y_pix):
         error, E = errorComputation(Objects.real, Groundtruth, x_pix, y_pix)
         errors = errors +error
         showimages(A=E, x_pix=x_pix, y_pix=y_pix, num= E.shape[1], filepath='D:/error/', flag=i * batchsize)
+
     return errors
 
 def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath, fullpath, flag):

@@ -1,5 +1,7 @@
 from svd import rsvd
 from numpy import *
+import gc
+import time
 
 def rdmd(X, Y, D, rank=5, p=5, q=5):
     # compute X's svd:
@@ -22,10 +24,15 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
 
     V = geneV(rank_new, D.shape[1], L)
 
+    del M_hat, L, W, X, Y, D, Ux, Sx, Vx, b
+    gc.collect()
+
     return phi, B, V
 
 def compute_Mhat(U,Y,V,S):
     M_hat = dot(U.T, Y).dot(V).dot(S)
+    del U, Y, V, S
+    gc.collect()
     return M_hat
 
 def compute_eig(X):
@@ -33,15 +40,21 @@ def compute_eig(X):
     # a is eigenvalues, b is eigenvector
     # here， L = a, W = b
     L, W = linalg.eig(X)
+    del X
+    gc.collect()
     return L, W
 
 def compute_phi(Y,V,S,W):
     phi = dot(Y, V).dot(S).dot(W)
+    del Y, V, S, W
+    gc.collect()
     return phi
 
 def compute_B(phi,rank_new, col):
     b = dot(phi.T,phi).I.dot(phi.T).dot(col)
     B = mat(eye(rank_new) * array(b))
+    del phi, rank_new, col
+    gc.collect()
     return B, b
 
 def geneV(rank_new, n, L):
@@ -52,6 +65,8 @@ def geneV(rank_new, n, L):
         for t in range(n):
             V[i, t] = V[i, t] * t
     V = exp(V)
+    del rank_new, n, L, fmode
+    gc.collect()
     return V
 
 def geneV_fmode(rank_new, n, L, threshold):
@@ -79,7 +94,6 @@ def geneV_fmode(rank_new, n, L, threshold):
             V2[j,:] = 0
         else:
             V1[j,:] = 0
-            # V2[j, :] = 255
 
     # print("V1")
     # print(V1)
@@ -87,12 +101,16 @@ def geneV_fmode(rank_new, n, L, threshold):
     # print(V2)
     # print("V3")
     # print(V3)
+    del fmode, L, rank_new, threshold
+    gc.collect()
 
     return V1, V2, V3
 
 
 def compute_newD(phi,B,V):
     D_new = dot(phi, B).dot(V)
+    del phi, B, V
+    gc.collect()
     return D_new
 
 def object_extraction(X, Y, D, rank, p, q, threshold):
@@ -110,6 +128,9 @@ def object_extraction(X, Y, D, rank, p, q, threshold):
 
     V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L, threshold=threshold)
 
+    del X, Y, D, rank, p, q, threshold
+    gc.collect()
+
     return phi, B, V1, V2, V3
 
 def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
@@ -117,7 +138,6 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
     M = {}
     parameters = {}
     output = {}
-    CompareMatrix = X[:, 0]
 
     if n <= batchsize:
         parameters["phi0"], parameters["B0"], parameters["V10"], parameters["V20"], parameters["V30"] \
@@ -137,6 +157,7 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
 
         for i in range(num):
             print("round " + str(i) + ":")
+
             M["D" + str(i)] = D[:, Dstart:Dend]
             M["X" + str(i)] = X[:, subStart:subEnd]
             M["Y" + str(i)] = Y[:, subStart:subEnd]
@@ -178,6 +199,8 @@ def rDMD_batch(X, Y, D, rank=5, p=5, q=5, threshold = 0.001, batchsize = 100):
             output["full" + str(num)] = compute_newD(parameters['phi' + str(num)], parameters['B' + str(num)],
                                                    parameters['V3' + str(num)])
 
+    del Dstart, Dend, subEnd, subStart, X, Y, D
+    gc.collect()
     return output, parameters
 
 

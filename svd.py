@@ -32,14 +32,6 @@ def cal_svd(A, svd_rank):
     V = V[:,:rank]
     sigma = sigma[:rank]
 
-    # U = U[:rank,:]
-    # V = V[:rank,:]
-    # sigma = sigma[:rank]
-
-    # print(sigma.shape)
-    # # print(S)
-    # print("U " + str(U.shape))
-    # print("V " + str(V.shape))
     return U, sigma, V
 
 def svd_newMatrix(A,U,sigma,V,rank):
@@ -72,19 +64,13 @@ def rsvd(A,rank,p = 5,q = 5):
     for i in range(n):
         O[i,:] = random.normal(0,1,rank_new)
 
-    # print(O)
-
-    # Y = power(dot(A,A.T),q).dot(A).dot(O) // memory error
     Y = dot(A,O)
-    # print(Y.shape)
     Q, R = linalg.qr(Y)
 
     # stage 2
     # project A onto the low-dimensional subspace
     B = dot(Q.T,A)
-    # print(B.shape)
     U_B, sigma, VT = linalg.svd(B, full_matrices=False)
-    # print(U_B.shape)
     V = VT.conj().T
     U = dot(Q,U_B)
     return U, sigma, V
