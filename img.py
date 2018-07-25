@@ -4,15 +4,17 @@ from DMD import object_extraction, compute_newD
 from rDMDio import loadimgs,  downloadImgs
 import gc
 import numpy as np
+from rDMDio import ImgstoVideo
 
 
 gc.collect()
 # 3000 is okay, > 20 is better
-imgNo = 1700
+imgNo = 400
+# imgNo = 1700
 batchsize = 100
-threshold = 0.001
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input/')
-rank = 848
+rank = 198
+# rank = 849
 n = A.shape[1]
 m = A.shape[0]
 p = rank
@@ -45,8 +47,7 @@ else:
 
         phi, B, V1, V2, V3 = object_extraction(X=M["X" + str(i)], Y=M["Y" + str(i)],
                                                                               D=M["D" + str(i)],
-                                                                              rank=rank_new, p=0, q=q,
-                                                                              threshold=threshold)
+                                                                              rank=rank_new, p=0, q=q)
         Background = compute_newD(phi, B, V1)
         Objects = compute_newD(phi, B, V2)
         Full = compute_newD(phi, B, V3)
@@ -66,3 +67,5 @@ end = time.clock()
 print("rdmd:" + str(end-start))
 
 gc.collect()
+
+ImgstoVideo("D:/objects/",'D:/videos/video1.avi')
