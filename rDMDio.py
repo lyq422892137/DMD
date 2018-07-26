@@ -57,10 +57,10 @@ def downloadImgs(background, objects, full, x_pix, y_pix, num, backpath, objpath
     showimages(A=background, x_pix=x_pix, y_pix=y_pix, num=num, filepath=backpath, flag=flag)
     showimages(A=full, x_pix=x_pix, y_pix=y_pix, num=num, filepath=fullpath, flag=flag)
 
-def ImgstoVideo(imgs_dir, save_name):
+def ImgstoVideo(imgs_dir, save_name, x_pix, y_pix):
         fps = 24.0
         fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-        video_writer = cv2.VideoWriter(save_name, fourcc, fps, (320, 240))
+        video_writer = cv2.VideoWriter(save_name, fourcc, fps, (y_pix, x_pix))
         # no glob, need number-index increasing
         imgs = glob.glob(os.path.join(imgs_dir, '*.png'))
 

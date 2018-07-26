@@ -1,5 +1,6 @@
 
 from numpy import *
+import gc
 
 
 def cal_svd(A, svd_rank):
@@ -49,7 +50,7 @@ def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
     rank_new = rank + p
     S = mat(eye(rank_new) * sigma)
     A_new = dot(U, S).dot(V.T)
-    # print(A_new.shape)
+
     # the error bound of rsvd:
     D = linalg.norm(A-A_new)
     print("rsvd: " + str(D))
@@ -73,6 +74,8 @@ def rsvd(A,rank,p = 5,q = 5):
     U_B, sigma, VT = linalg.svd(B, full_matrices=False)
     V = VT.conj().T
     U = dot(Q,U_B)
+    del A,B,Y,n,rank_new
+    gc.collect()
     return U, sigma, V
 
 

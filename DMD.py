@@ -93,12 +93,13 @@ def geneV(rank_new, n, L):
 # (1) V2 for objects whose fourier modes are bigger than threshold
 # (2) V1 for background whose fourier modes are smaller than/equal to threshold
 # (3) V3 the new images with the entire fourier modes
-def geneV_fmode(rank_new, n, L):
+def geneV_fmode(rank_new, n, L,m):
     V1 = zeros((rank_new, n), dtype=complex)
     V2 = zeros((rank_new, n), dtype=complex)
     V3 = zeros((rank_new, n), dtype=complex)
     fmode = log(L)
-    threshold = mean(abs(fmode))/100
+    # threshold = mean(abs(fmode))/100
+    threshold = 1/sqrt(max(n,m))
 
     for i in range(len(L)):
         V1[i, :] = fmode[i]
@@ -120,9 +121,10 @@ def geneV_fmode(rank_new, n, L):
         else:
             V1[j,:] = 0
 
+    V2 = V2*10
+
     del fmode, L, rank_new, threshold
     gc.collect()
-    V2 = V2 * 10
 
     return V1, V2, V3
 
@@ -160,7 +162,7 @@ def object_extraction(X, Y, D, rank, p, q):
 
     B, b = compute_B(phi, rank_new, X[:, 0])
 
-    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L)
+    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L,X.shape[0])
 
     del X, Y, D, rank, p, q
     gc.collect()

@@ -9,11 +9,11 @@ from rDMDio import ImgstoVideo
 
 gc.collect()
 # 3000 is okay, > 20 is better
-imgNo = 400
+imgNo = 900
 # imgNo = 1700
 batchsize = 100
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input/')
-rank = 198
+rank = 448
 # rank = 849
 n = A.shape[1]
 m = A.shape[0]
@@ -68,4 +68,4 @@ print("rdmd:" + str(end-start))
 
 gc.collect()
 
-ImgstoVideo("D:/objects/",'D:/videos/video1.avi')
+ImgstoVideo("D:/objects/",'D:/videos/video1.avi',x_pix,y_pix)
