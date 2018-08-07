@@ -68,4 +68,4 @@ print("rdmd:" + str(end-start))
 
 gc.collect()
 
-ImgstoVideo("D:/objects/",'D:/videos/video1.avi',x_pix,y_pix)
+ImgstoVideo("D:/objects/",'D:/videos/video3.avi',x_pix,y_pix)

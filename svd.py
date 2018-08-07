@@ -42,7 +42,7 @@ def svd_newMatrix(A,U,sigma,V,rank):
     # print(A_new.shape)
     # frobenius norm
     D = linalg.norm(A-A_new)
-    print("svd: "+ str(D))
+    print("svd error: "+ str(D))
     return A_new, D
 
 def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
@@ -53,7 +53,7 @@ def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
 
     # the error bound of rsvd:
     D = linalg.norm(A-A_new)
-    print("rsvd: " + str(D))
+    print("rsvd error: " + str(D))
     return A_new, D
 
 

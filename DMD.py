@@ -24,7 +24,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     random.seed(7)
     rank_new = rank + p
     Ux, sigmax, Vx = rsvd(X, rank, p, q)
-    Sx = mat(diag(sigmax)).I
+    Sx = mat(diag(sorted(sigmax,reverse=True))).I
 
     # compute M_hat
     M_hat = compute_Mhat(Ux, Y, Vx, Sx)
@@ -121,7 +121,7 @@ def geneV_fmode(rank_new, n, L,m):
         else:
             V1[j,:] = 0
 
-    V2 = V2*10
+    # V2 = V2*10
 
     del fmode, L, rank_new, threshold
     gc.collect()
