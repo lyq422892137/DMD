@@ -16,6 +16,8 @@ def robust_pca(M):
     print(M.shape)
     mu = (M.shape[0] * M.shape[1]) / (4.0 * L1Norm(M))
     lamb = max(M.shape) ** -0.5
+    # lamb = lamb/100
+    print(lamb)
     while not converged(M, L, S):
         L = svd_shrink(M - S - (mu ** -1) * Y, mu)
         S = shrink(M - L + (mu ** -1) * Y, lamb * mu)

@@ -9,7 +9,7 @@ import cv2
 
 gc.collect()
 # 3000 is okay, > 20 is better
-imgNo = 100
+imgNo = 5
 # imgNo = 1700
 batchsize = 100
 rank = 448
@@ -26,6 +26,11 @@ q = 5
 
 start = time.clock()
 L, S = robust_pca(A)
+print(L)
+print(S.shape)
+# print(S.reshape((2240,100)))
+S=S*np.power(10,7)
+# print(S.reshape((2240,100)))
 times = int(n/batchsize)
 M = {}
 Dstart = 0
