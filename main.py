@@ -9,12 +9,14 @@ from rDMDio import ImgstoVideo
 
 gc.collect()
 # 3000 is okay, > 20 is better
-imgNo = 900
-# imgNo = 1700
+# imgNo = 900
+imgNo = 1700
+# imgNo = 200
 batchsize = 100
 A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input/')
-rank = 448
-# rank = 849
+# rank = 448
+rank = 849
+# rank = 49
 n = A.shape[1]
 m = A.shape[0]
 p = rank
@@ -24,11 +26,10 @@ q = 5
 # rdmd & backgorund/foreground extraction
 
 start = time.clock()
-
-times = int(n/batchsize)
-M = {}
 Dstart = 0
 Dend = batchsize
+times = int(n/batchsize)
+M = {}
 subStart = 0
 subEnd = batchsize - 1
 rank_new = int((rank + p) * batchsize / n)
@@ -41,9 +42,9 @@ else:
 
         print("round " + str(i) + ":")
 
-        M["D" + str(i)] = A[:, Dstart:Dend]
         M["X" + str(i)] = X[:, subStart:subEnd]
         M["Y" + str(i)] = Y[:, subStart:subEnd]
+        M["D" + str(i)] = A[:, Dstart:Dend]
 
         phi, B, V1, V2, V3 = object_extraction(X=M["X" + str(i)], Y=M["Y" + str(i)],
                                                                               D=M["D" + str(i)],
@@ -58,8 +59,6 @@ else:
         del phi, B, V1, V2, V3, Background, Full, Objects
         gc.collect()
 
-        Dstart = Dend
-        Dend = Dend + batchsize
         subStart = subEnd
         subEnd = subEnd + batchsize
 

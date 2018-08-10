@@ -57,7 +57,7 @@ def rsvd_newMatrix(A,U,sigma,V,rank,p=5):
     return A_new, D
 
 
-def rsvd(A,rank,p = 5,q = 5):
+def rsvd(A,rank,p = 5,q = 1):
     # stage 1
     n = A.shape[1]
     rank_new = rank + p

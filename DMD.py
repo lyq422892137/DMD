@@ -24,7 +24,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     random.seed(7)
     rank_new = rank + p
     Ux, sigmax, Vx = rsvd(X, rank, p, q)
-    Sx = mat(diag(sorted(sigmax,reverse=True))).I
+    Sx = mat(diag(sigmax,reverse=True)).I
 
     # compute M_hat
     M_hat = compute_Mhat(Ux, Y, Vx, Sx)
@@ -33,7 +33,7 @@ def rdmd(X, Y, D, rank=5, p=5, q=5):
     # L is eigenvalues, W is eigenvector
     L, W = compute_eig(M_hat)
 
-    # compute phi (dynamic modes)  and B, the amplitudes
+    # compute phi (dynamic modes)
     phi = compute_phi(Y, Vx, Sx, W)
 
     # compute B
@@ -98,7 +98,8 @@ def geneV_fmode(rank_new, n, L,m):
     V2 = zeros((rank_new, n), dtype=complex)
     V3 = zeros((rank_new, n), dtype=complex)
     fmode = log(L)
-    # threshold = mean(abs(fmode))/100
+    # threshold = mean(abs(fmode))/10
+    # print(fmode)
     threshold = 1/sqrt(max(n,m))
 
     for i in range(len(L)):
@@ -162,7 +163,7 @@ def object_extraction(X, Y, D, rank, p, q):
 
     B, b = compute_B(phi, rank_new, X[:, 0])
 
-    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L,X.shape[0])
+    V1, V2, V3 = geneV_fmode(rank_new, D.shape[1], L, X.shape[0])
 
     del X, Y, D, rank, p, q
     gc.collect()
