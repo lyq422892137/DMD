@@ -1,4 +1,5 @@
-# copyright
+# forked from https://github.com/nwbirnie/rpca
+# have some modifications
 
 import math
 import numpy.linalg

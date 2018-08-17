@@ -176,7 +176,7 @@ def object_extraction(X, Y, D, rank, p, q, imgNo):
 # compute errors between groundtruth and objects
 def errorComputation(Objects, G, x_pix, y_pix):
     ImgNo = Objects.shape[1]
-    Error = abs(G) - abs(Objects)
+    Error = abs(G - Objects)
     error = sum(sum(Error))/ImgNo/x_pix/y_pix
     print("sub-error: " + str(error))
     return error, Error

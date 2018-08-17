@@ -5,7 +5,6 @@ from rDMDio import loadimgs,  downloadImgs
 import gc
 import numpy as np
 from rDMDio import ImgstoVideo
-from rpca import robust_pca
 
 
 
@@ -51,22 +50,17 @@ else:
         phi, B, V1, V2, V3 = object_extraction(X=M["X" + str(i)], Y=M["Y" + str(i)],
                                                                               D=M["D" + str(i)],
                                                                               rank=rank_new, p=0, q=q, imgNo=imgNo)
-        # L, S = robust_pca(M["D" + str(i)])
-        # S = S * np.power(10, 4.2)
-        #
-        # Background = compute_newD(phi, B, V1)
-        # Objects = compute_newD(phi, B, V2)
-        # Full = compute_newD(phi, B, V3)
-        #
-        # downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
-        #              backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
 
-        # downloadImgs(L, S, M["D" + str(i)], x_pix=x_pix, y_pix=y_pix, num=batchsize,
-        #              backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
+        Background = compute_newD(phi, B, V1)
+        Objects = compute_newD(phi, B, V2)
+        Full = compute_newD(phi, B, V3)
 
-        # del phi, B, V1, V2, V3, Background, Full, Objects
-        del phi, B, V1, V2, V3
-        # del L, S
+        downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
+                     backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
+
+
+        del phi, B, V1, V2, V3, Background, Full, Objects
+
         gc.collect()
 
         subStart = subEnd

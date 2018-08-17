@@ -7,7 +7,6 @@ import os
 def loadimgs(filepath, num = 100):
     snapshots = [
             np.array(cv2.imread(filepath + 'in00{:04d}.jpg'.format(i),0),dtype='uint8')
-            # np.array(cv2.imread(filepath + '00{:04d}.png'.format(i), 0), dtype='uint8')
             for i in range(1, num + 1)
         ]
 
