@@ -8,17 +8,11 @@ import cv2
 
 
 gc.collect()
-# 3000 is okay, > 20 is better
-imgNo = 5
+imgNo = 700
 # imgNo = 1700
-batchsize = 100
-rank = 448
-A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input/')
+A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input_hw/')
 n = A.shape[1]
 m = A.shape[0]
-p = rank
-q = 5
-
 
 
 #############################################
@@ -26,28 +20,30 @@ q = 5
 
 start = time.clock()
 L, S = robust_pca(A)
+
 print(L)
 print(S.shape)
+print(S)
+S = S * np.power(10,7)
 # print(S.reshape((2240,100)))
-S=S*np.power(10,7)
+# S= S * np.power(10,4.5)
 # print(S.reshape((2240,100)))
-times = int(n/batchsize)
-M = {}
-Dstart = 0
-Dend = batchsize
-subStart = 0
-subEnd = batchsize - 1
-rank_new = int((rank + p) * batchsize / n)
-errors = 0
 
-for i in range(imgNo):
-    print("round " + str(i) + ":")
-    downloadImgs(L, S, A, x_pix=x_pix, y_pix=y_pix, num=imgNo,
-                 backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i)
-    gc.collect()
+# Dstart = 0
+# Dend = batchsize
+# subStart = 0
+# subEnd = batchsize - 1
+# rank_new = int((rank + p) * batchsize / n)
+# errors = 0
 
+# for i in range(imgNo):
+#     print("round " + str(i) + ":")
 
 end = time.clock()
 print("rdmd:" + str(end-start))
 
+# downloadImgs(L, S, A, x_pix=x_pix, y_pix=y_pix, num=imgNo,
+#                  backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=0)
+    # print(i)
 gc.collect()
+

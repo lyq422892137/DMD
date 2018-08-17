@@ -5,17 +5,19 @@ from rDMDio import loadimgs,  downloadImgs
 import gc
 import numpy as np
 from rDMDio import ImgstoVideo
+from rpca import robust_pca
 
 
-gc.collect()
+
 # 3000 is okay, > 20 is better
-# imgNo = 900
-imgNo = 1700
+
+imgNo = 700
 # imgNo = 200
 batchsize = 100
-A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input/')
-# rank = 448
-rank = 849
+A, X, Y, snapshots, x_pix, y_pix = loadimgs(num=imgNo, filepath='D:/input_hw/')
+del snapshots
+gc.collect()
+rank = imgNo/2-1
 # rank = 49
 n = A.shape[1]
 m = A.shape[0]
@@ -48,15 +50,23 @@ else:
 
         phi, B, V1, V2, V3 = object_extraction(X=M["X" + str(i)], Y=M["Y" + str(i)],
                                                                               D=M["D" + str(i)],
-                                                                              rank=rank_new, p=0, q=q)
-        Background = compute_newD(phi, B, V1)
-        Objects = compute_newD(phi, B, V2)
-        Full = compute_newD(phi, B, V3)
+                                                                              rank=rank_new, p=0, q=q, imgNo=imgNo)
+        # L, S = robust_pca(M["D" + str(i)])
+        # S = S * np.power(10, 4.2)
+        #
+        # Background = compute_newD(phi, B, V1)
+        # Objects = compute_newD(phi, B, V2)
+        # Full = compute_newD(phi, B, V3)
+        #
+        # downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
+        #              backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
 
-        downloadImgs(Background.real, Objects.real, Full.real, x_pix=x_pix, y_pix=y_pix, num=batchsize,
-                     backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
+        # downloadImgs(L, S, M["D" + str(i)], x_pix=x_pix, y_pix=y_pix, num=batchsize,
+        #              backpath='D:/background/', objpath='D:/objects/', fullpath='D:/output/', flag=i * batchsize)
 
-        del phi, B, V1, V2, V3, Background, Full, Objects
+        # del phi, B, V1, V2, V3, Background, Full, Objects
+        del phi, B, V1, V2, V3
+        # del L, S
         gc.collect()
 
         subStart = subEnd

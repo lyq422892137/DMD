@@ -5,26 +5,30 @@ from svd import svd_newMatrix
 from svd import rsvd_newMatrix
 import time
 
-
 random.seed(7)
-m = 200
-n = 10
-rank = 9
-p = 0
-A = random.random((m,n))
 
-# svd
+m = 3
+n = 4
+rank = 2
+p = 0
+B = random.random((m, n))
+print(B)
+A = random.random((m,n))
+print(A)
+print(sum(sum(A-B)))
+
+
 time1= []
 error1=[]
 
-for i in range(0,1000):
-    begin1 = time.clock()
-    U, sigma, V = cal_svd(A,rank)
-    end1 = time.clock()
-    print("svd time: " + str(end1-begin1))
-    A_new, D = svd_newMatrix(A, U, sigma, V, rank)
-    time1.append(end1-begin1)
-    error1.append(D)
+# for i in range(0,2):
+#     begin1 = time.clock()
+#     U, sigma, V = cal_svd(A,rank)
+#     end1 = time.clock()
+#     print("svd time: " + str(end1-begin1))
+#     A_new, D = svd_newMatrix(A, U, sigma, V, rank)
+#     time1.append(end1-begin1)
+#     error1.append(D)
 
 
 # print(A)
@@ -37,7 +41,7 @@ for i in range(0,1000):
 time2= []
 error2=[]
 
-for i in range(0,1000):
+for i in range(0,10):
     begin2 = time.clock()
     U2, sigma2, V2 = rsvd(A=A, rank=rank, p=p)
     end2 = time.clock()

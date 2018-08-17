@@ -67,6 +67,9 @@ def rsvd(A,rank,p = 5,q = 1):
 
     Y = dot(A,O)
     Q, R = linalg.qr(Y)
+    print("QR")
+    print(Q.shape)
+    print(R.shape)
 
     # stage 2
     # project A onto the low-dimensional subspace
